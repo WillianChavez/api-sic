@@ -1,12 +1,5 @@
 # Plantilla REST
 
-### Ministerio de Salud de El Salvador (MINSAL)
-
-<div align="center">
-	<a href="http://codigo.salud.gob.sv/plantillas/api-rest-admin">
-		<img alt="SUIS" title="SUIS" src="https://next.salud.gob.sv/index.php/s/yXfAcAnwakNb779/preview" width="250" style="width: 250px;">
-	</a>
-</div>
 
 ## Tabla de Contenido
 
@@ -237,7 +230,4 @@ Como parte de esta plantilla se brinda una guía de inicio rápido para la creac
 
 <a rel="license" href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img alt="Licencia GNU GPLv3" style="border-width:0" src="https://next.salud.gob.sv/index.php/s/qxdZd5iwcqCyJxn/preview" width="96" /></a>
 
-
-
-Este proyecto está bajo la <a rel="license" href="http://codigo.salud.gob.sv/plantillas/api-rest-admin/blob/master/LICENSE">licencia GNU General&nbsp;Public&nbsp;License&nbsp;v3.0</a>
 
