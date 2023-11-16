@@ -148,6 +148,30 @@ module.exports = {
           { name: 'ROLE_ADMIN_USER_CREATE', id_tipo_rol: admin.id },
           { name: 'ROLE_ADMIN_USER_UPDATE', id_tipo_rol: admin.id },
           { name: 'ROLE_USER_ADMIN', id_tipo_rol: admin.id },
+
+          // roles para ver, crear y editar los servicios
+          { name: 'ROLE_ADMIN_SERVICE_LIST', id_tipo_rol: admin.id },
+          { name: 'ROLE_ADMIN_SERVICE_CREATE', id_tipo_rol: admin.id },
+          { name: 'ROLE_ADMIN_SERVICE_UPDATE', id_tipo_rol: admin.id },
+
+          // roles para ver, crear y editar las compras
+          { name: 'ROLE_ADMIN_PURCHASE_LIST', id_tipo_rol: admin.id },
+          { name: 'ROLE_ADMIN_PURCHASE_CREATE', id_tipo_rol: admin.id },
+          { name: 'ROLE_ADMIN_PURCHASE_UPDATE', id_tipo_rol: admin.id },
+
+          // roles para ver las cuentas
+          { name: 'ROLE_ADMIN_ACCOUNT_LIST', id_tipo_rol: admin.id },
+
+          // roles para ver los reportes
+          { name: 'ROLE_ADMIN_REPORT_LIST', id_tipo_rol: admin.id },
+          // reporte de libro de ventas a contribuyentes
+          { name: 'ROLE_ADMIN_REPORT_SALES_BOOK_LIST', id_tipo_rol: admin.id },
+          // reporte de libro de ventas a consumidores finales
+          { name: 'ROLE_ADMIN_REPORT_SALES_BOOK_CONSUMERS_LIST', id_tipo_rol: admin.id },
+          // reporte de libro de compras
+          { name: 'ROLE_ADMIN_REPORT_PURCHASE_BOOK_LIST', id_tipo_rol: admin.id },
+          // reporte de libro de diario mayor
+          { name: 'ROLE_ADMIN_REPORT_GENERAL_LEDGER_LIST', id_tipo_rol: admin.id },
         ],
         {
           returning: ['id'],
@@ -297,6 +321,134 @@ module.exports = {
             orden: null,
             publico: false,
             admin: false,
+          },
+          // rutas para ver, crear y editar los servicios
+          {
+            nombre: 'servicios',
+            uri: '/servicios',
+            nombre_uri: 'servicios',
+            mostrar: true,
+            icono: 'mdi-cog',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          {
+            nombre: 'servicios',
+            uri: '/servicios/crear',
+            nombre_uri: 'servicios-crear',
+            mostrar: false,
+            icono: 'mdi-cog',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          {
+            nombre: 'servicios',
+            uri: '/servicios/editar',
+            nombre_uri: 'servicios-editar',
+            mostrar: false,
+            icono: 'mdi-cog',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          // rutas para ver, crear y editar las compras
+          {
+            nombre: 'compras',
+            uri: '/compras',
+            nombre_uri: 'compras',
+            mostrar: true,
+            icono: 'mdi-cart',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          {
+            nombre: 'compras',
+            uri: '/compras/crear',
+            nombre_uri: 'compras-crear',
+            mostrar: false,
+            icono: 'mdi-cart',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          {
+            nombre: 'compras',
+            uri: '/compras/editar',
+            nombre_uri: 'compras-editar',
+            mostrar: false,
+            icono: 'mdi-cart',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          // rutas para ver las cuentas
+          {
+            nombre: 'cuentas',
+            uri: '/cuentas',
+            nombre_uri: 'cuentas',
+            mostrar: true,
+            icono: 'mdi-cash',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          // rutas para ver los reportes
+          {
+            nombre: 'reportes',
+            uri: '/reportes',
+            nombre_uri: 'reportes',
+            mostrar: true,
+            icono: 'mdi-file-chart',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          // reporte de libro de ventas a contribuyentes
+          {
+            nombre: 'reportes',
+            uri: '/reportes/libro-ventas-contribuyentes',
+            nombre_uri: 'reportes-libro-ventas-contribuyentes',
+            mostrar: false,
+            icono: 'mdi-file-chart',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          // reporte de libro de ventas a consumidores finales
+          {
+            nombre: 'reportes',
+            uri: '/reportes/libro-ventas-consumidores-finales',
+            nombre_uri: 'reportes-libro-ventas-consumidores-finales',
+            mostrar: false,
+            icono: 'mdi-file-chart',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          // reporte de libro de compras
+          {
+            nombre: 'reportes',
+            uri: '/reportes/libro-compras',
+            nombre_uri: 'reportes-libro-compras',
+            mostrar: false,
+            icono: 'mdi-file-chart',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          // reporte de libro de diario mayor
+          {
+            nombre: 'reportes',
+            uri: '/reportes/libro-diario-mayor',
+            nombre_uri: 'reportes-libro-diario-mayor',
+            mostrar: false,
+            icono: 'mdi-file-chart',
+            orden: null,
+            publico: false,
+            admin: true,
           },
         ],
         {
