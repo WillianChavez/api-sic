@@ -40,17 +40,13 @@ module.exports = {
         type: psql.Sequelize.STRING(20),
         allowNull: false,
       },
-      nit: {
-        type: psql.Sequelize.STRING(20),
+      id_proveedor: {
+        type: psql.Sequelize.INTEGER,
         allowNull: false,
-      },
-      proveedor: {
-        type: psql.Sequelize.STRING(250),
-        allowNull: false,
-      },
-      nrc: {
-        type: psql.Sequelize.STRING(20),
-        allowNull: true,
+        references: {
+          model: 'mnt_persona',
+          key: 'id',
+        },
       },
       es_sujeto_excluido: {
         type: psql.Sequelize.BOOLEAN,

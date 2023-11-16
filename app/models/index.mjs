@@ -16,6 +16,7 @@ import Servicio from './Servicio.mjs';
 import Compra from './Compra.mjs';
 import DetalleVenta from './DetalleVenta.mjs';
 import DetalleCompra from './DetalleCompra.mjs';
+import Persona from './Persona.mjs';
 
 Usuario.associate();
 RefreshToken.associate();
@@ -31,6 +32,7 @@ Servicio.associate();
 Compra.associate();
 DetalleCompra.associate();
 DetalleVenta.associate();
+Persona.associate();
 
 export {
   RefreshToken,
@@ -51,4 +53,5 @@ export {
   Compra,
   DetalleCompra,
   DetalleVenta,
+  Persona,
 };

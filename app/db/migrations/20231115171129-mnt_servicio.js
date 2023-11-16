@@ -36,23 +36,18 @@ module.exports = {
         type: psql.Sequelize.DATE,
         allowNull: false,
       },
-      cliente: {
-        type: psql.Sequelize.STRING(250),
+      id_cliente: {
+        type: psql.Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'mnt_persona',
+          key: 'id',
+        },
       },
       descripcion: {
         type: psql.Sequelize.STRING(250),
         allowNull: false,
       },
-      nit: {
-        type: psql.Sequelize.STRING(20),
-        allowNull: false,
-      },
-      nrc: {
-        type: psql.Sequelize.STRING(20),
-        allowNull: true,
-      },
-
     });
   },
 
