@@ -32,11 +32,11 @@ router.post('/v1/2fa/code', [auth2FA], Call(ApiController.sendCode));
 router.post('/v1/2fa/verification/token', Call(ApiController.sendVerificationToken));
 router.get('/v1/verification/account/:token', Call(ApiController.confirmUser));
 router.post('/v1/refresh', Call(ApiController.RefreshToken));
-router.use('/v1/users', [auth, bitacora], routesUsers);
-router.use('/v1/perfiles', [auth, bitacora], routesPerfil);
-router.use('/v1/roles', [auth, bitacora], routesRoles);
-router.use('/v1/tipo/roles', [auth, bitacora], routesTipoRoles);
-router.use('/v1/rutas', [auth, bitacora], routesRutas);
+router.use('/v1/users', [auth], routesUsers);
+router.use('/v1/perfiles', [auth], routesPerfil);
+router.use('/v1/roles', [auth], routesRoles);
+router.use('/v1/tipo/roles', [auth], routesTipoRoles);
+router.use('/v1/rutas', [auth], routesRutas);
 router.put(
   '/v1/password/change',
   [validate(recoveryPasswordSchema)],
