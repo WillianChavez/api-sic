@@ -37,6 +37,9 @@ module.exports = {
         type: psql.Sequelize.BOOLEAN,
         defaultValue: false,
       },
+      nombre: {
+        type: psql.Sequelize.STRING,
+      },
     });
   },
 

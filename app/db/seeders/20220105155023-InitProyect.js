@@ -48,6 +48,7 @@ module.exports = {
             is_suspended: false,
             two_factor_status: process.env.TWO_FACTOR_AUTH === 'true',
             verified: true,
+            nombre: process.env.NOMBRE_INICIAL,
           },
         ],
         {

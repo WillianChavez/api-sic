@@ -3,7 +3,6 @@ import validate from '../app/middlewares/validate.mjs';
 import ApiController from '../app/controllers/ApiController.mjs';
 import auth from '../app/middlewares/Auth.mjs';
 import auth2FA from '../app/middlewares/Auth2FA.mjs';
-import bitacora from '../app/middlewares/bitacora.mjs';
 import Call from '../app/utils/Call.mjs';
 import routesUsers from './api/usuario.mjs';
 import routesRoles from './api/rol.mjs';
@@ -20,7 +19,7 @@ import routesCompra from './api/compra.mjs';
 
 const router = Router();
 router.post('/v1/login', [validate(loginSchema)], Call(ApiController.login));
-router.post('/v1/logout', [auth, bitacora], Call(ApiController.logout));
+router.post('/v1/logout', [auth], Call(ApiController.logout));
 router.get('/v1/2fa', [auth], Call(ApiController.twoFactorList));
 router.post(
   '/v1/2fa',

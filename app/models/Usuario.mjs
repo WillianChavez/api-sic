@@ -25,6 +25,7 @@ const UsuarioSchema = {
   token_valid_after: { type: psql.Sequelize.STRING },
   two_factor_status: { type: psql.Sequelize.BOOLEAN },
   verified: { type: psql.Sequelize.BOOLEAN },
+  nombre: { type: psql.Sequelize.STRING },
 };
 
 class Usuario extends psql.Model {
@@ -82,6 +83,7 @@ class Usuario extends psql.Model {
       is_suspended: this.is_suspended,
       perfiles: this.Perfils,
       roles: this.Rols,
+      nombre: this.nombre,
     };
   }
 }

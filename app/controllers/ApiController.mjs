@@ -57,6 +57,7 @@ export default class ApiController {
         'last_login',
         'verified',
         'two_factor_status',
+        'nombre',
       ],
       include: [
         {
@@ -146,6 +147,7 @@ export default class ApiController {
       last_login: usuario.last_login,
       two_factor_status: usuario.two_factor_status,
       auth_methods: metodosAutenticacion,
+      nombre: usuario.nombre,
     };
 
     const response = {};
