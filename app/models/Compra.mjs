@@ -12,6 +12,8 @@ class Compra extends psql.Model {
     });
     this.hasOne(DetalleCompra, {
       foreignKey: 'id_compra',
+      hooks: true,
+      onDelete: 'CASCADE',
     });
   }
 }
