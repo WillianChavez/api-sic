@@ -1,8 +1,18 @@
 import psql from 'sequelize';
 import DB from '../nucleo/DB.mjs';
+import { Cuenta, DetalleCompra, TipoContribuyente } from './index.mjs';
 
 class Compra extends psql.Model {
   static associate() {
+    this.belongsTo(TipoContribuyente, {
+      foreignKey: 'id_tipo_contribuyente',
+    });
+    this.belongsTo(Cuenta, {
+      foreignKey: 'id_cuenta',
+    });
+    this.hasOne(DetalleCompra, {
+      foreignKey: 'id_compra',
+    });
   }
 }
 

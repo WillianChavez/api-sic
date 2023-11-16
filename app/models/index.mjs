@@ -8,6 +8,14 @@ import RutaRol from './RutaRol.mjs';
 import UsuarioPerfil from './UsuarioPerfil.mjs';
 import UsuarioRol from './UsuarioRol.mjs';
 import MetodoAutenticacion from './MetodoAutenticacion.mjs';
+import TipoCuenta from './TipoCuenta.mjs';
+import Cuenta from './Cuenta.mjs';
+import TipoContribuyente from './TipoContribuyente.mjs';
+import TipoEmisionDocumento from './TipoEmisionDocumento.mjs';
+import Servicio from './Servicio.mjs';
+import Compra from './Compra.mjs';
+import DetalleVenta from './DetalleVenta.mjs';
+import DetalleCompra from './DetalleCompra.mjs';
 
 Usuario.associate();
 RefreshToken.associate();
@@ -15,6 +23,15 @@ Perfil.associate();
 Rol.associate();
 Ruta.associate();
 MetodoAutenticacion.associate();
+TipoContribuyente.associate();
+TipoCuenta.associate();
+Cuenta.associate();
+TipoEmisionDocumento.associate();
+Servicio.associate();
+Compra.associate();
+DetalleCompra.associate();
+DetalleVenta.associate();
+
 export {
   RefreshToken,
   Usuario,
@@ -26,4 +43,12 @@ export {
   UsuarioPerfil,
   UsuarioRol,
   MetodoAutenticacion,
+  TipoCuenta,
+  Cuenta,
+  TipoContribuyente,
+  TipoEmisionDocumento,
+  Servicio,
+  Compra,
+  DetalleCompra,
+  DetalleVenta,
 };

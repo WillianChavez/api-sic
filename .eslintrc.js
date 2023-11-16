@@ -23,5 +23,7 @@ module.exports = {
       },
     ],
     'max-len': ['error', { code: 200 }],
+    'import/no-cycle': 'off',
+    'linebreak-style': 'off',
   },
 };

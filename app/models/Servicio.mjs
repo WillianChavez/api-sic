@@ -1,12 +1,23 @@
 import psql from 'sequelize';
 import DB from '../nucleo/DB.mjs';
+import { Cuenta, TipoContribuyente, TipoEmisionDocumento } from './index.mjs';
 
 class Servicio extends psql.Model {
   static associate() {
+    this.belongsTo(TipoContribuyente, {
+      foreignKey: 'id_tipo_contribuyente',
+    });
+    this.belongsTo(TipoEmisionDocumento, {
+      foreignKey: 'id_tipo_emision_documento',
+    });
+    this.belongsTo(Cuenta, {
+      foreignKey: 'id_cuenta',
+    });
   }
 }
 
 Servicio.init(
+  // eslint-disable-next-line linebreak-style
   {
     id: {
       type: psql.Sequelize.INTEGER,

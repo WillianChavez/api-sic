@@ -8,40 +8,32 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      id_servicio: {
+      id_compra: {
         type: psql.Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'mnt_servicio',
+          model: 'mnt_compra',
           key: 'id',
         },
       },
-      numero_factura: {
-        type: psql.Sequelize.STRING(20),
+      gravado_interno: {
+        type: psql.Sequelize.DECIMAL(10, 2),
         allowNull: false,
       },
-      gravado_local: {
-        type: psql.Sequelize.DECIMAL(20, 2),
+      exento_interno: {
+        type: psql.Sequelize.DECIMAL(10, 2),
         allowNull: true,
       },
-      cantidad_exento: {
-        type: psql.Sequelize.DECIMAL(20, 2),
-        allowNull: false,
-      },
-      cantidad_no_sujeta: {
-        type: psql.Sequelize.DECIMAL(20, 2),
+      exento_importacion: {
+        type: psql.Sequelize.DECIMAL(10, 2),
         allowNull: true,
       },
-      gravado_exportacion: {
-        type: psql.Sequelize.DECIMAL(20, 2),
-        allowNull: true,
-      },
-      total_ventas: {
-        type: psql.Sequelize.DECIMAL(20, 2),
+      compras_sujeto_excluido: {
+        type: psql.Sequelize.DECIMAL(10, 2),
         allowNull: false,
       },
       anticipo_uno_porciento_retenido: {
-        type: psql.Sequelize.DECIMAL(20, 2),
+        type: psql.Sequelize.DECIMAL(10, 2),
         allowNull: true,
       },
     });

@@ -1,8 +1,12 @@
 import psql from 'sequelize';
 import DB from '../nucleo/DB.mjs';
+import { Cuenta } from './index.mjs';
 
 class TipoCuenta extends psql.Model {
   static associate() {
+    this.hasMany(Cuenta, {
+      foreignKey: 'id_tipo_cuenta',
+    });
   }
 }
 
