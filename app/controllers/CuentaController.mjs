@@ -1,9 +1,42 @@
-import { Cuenta } from '../models/index.mjs';
+import { Cuenta, TipoCuenta } from '../models/index.mjs';
 import HttpCode from '../../configs/httpCode.mjs';
+import VerifyModel from '../utils/VerifyModel.mjs';
 
 export default class CuentaController {
   static async index(req, res) {
-    const cuentas = await Cuenta.findAll();
+    const {
+      page = 1,
+      per_page: perPage = 10,
+      paginacion = 'true',
+    } = req.query;
+    const options = {};
+
+    if (paginacion === 'true') {
+      VerifyModel.isValid(perPage, 'cantidad por pagina debe ser de tipo entero');
+      VerifyModel.isValid(page, 'pagina debe ser de tipo entero');
+
+      options.offset = perPage * (page - 1);
+      options.limit = Number(perPage);
+      options.distinct = true;
+    }
+
+    const { count: totalRows, rows: cuentas } = await Cuenta.findAndCountAll({
+      ...options,
+      include: [
+        {
+          model: TipoCuenta,
+        },
+      ],
+    });
+
+    if (paginacion === 'true') {
+      res.set({
+        total_rows: Number(totalRows),
+        page: Number(page),
+        per_page: Number(perPage),
+      });
+    }
+
     return res.status(HttpCode.HTTP_OK).json(cuentas);
   }
 
