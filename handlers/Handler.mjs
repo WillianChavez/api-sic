@@ -4,7 +4,7 @@ import ErrorModel from '../app/nucleo/mongo/error.mjs';
 
 export default class Handler {
   static logError(req, err) {
-    if (req.usuario) {
+    if (req.usuario && process.env.ENABLED_BITACORA_MONGODB === 'true') {
       const Error = new ErrorModel({
         id_bitacora: req.bitacora ? req.bitacora.id : null,
         codigo: err.statusCode,

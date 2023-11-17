@@ -11,13 +11,15 @@ const URI_MONGO_DB = `mongodb://${username}:${password}@${host}:${port}/${databa
 
 export default class connectionMongoose {
   static async connection() {
-    try {
-      await mongoose.connect(URI_MONGO_DB, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
-    } catch (error) {
-      console.log(error);
+    if (process.env.ENABLED_BITACORA_MONGODB === 'true') {
+      try {
+        await mongoose.connect(URI_MONGO_DB, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 }
