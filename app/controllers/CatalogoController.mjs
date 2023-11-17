@@ -1,4 +1,6 @@
-import { TipoContribuyente, TipoCuenta, TipoEmisionDocumento } from '../models/index.mjs';
+import {
+  Persona, TipoContribuyente, TipoCuenta, TipoEmisionDocumento,
+} from '../models/index.mjs';
 import HttpCode from '../../configs/httpCode.mjs';
 
 export default class CatalogoController {
@@ -15,5 +17,21 @@ export default class CatalogoController {
   static async getTipoEmisionDocumentos(req, res) {
     const tipoEmisionDocumentos = await TipoEmisionDocumento.findAll();
     return res.status(HttpCode.HTTP_OK).json(tipoEmisionDocumentos);
+  }
+
+  static async verifyPersona(req, res) {
+    const { nit } = req.params;
+
+    const persona = await Persona.findOne({
+      where: {
+        nit,
+      },
+    });
+
+    if (persona) {
+      return res.status(HttpCode.HTTP_OK).json(persona);
+    }
+
+    return res.status(HttpCode.HTTP_OK).json();
   }
 }

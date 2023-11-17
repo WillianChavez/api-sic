@@ -1,7 +1,8 @@
 import psql from 'sequelize';
 import DB from '../nucleo/DB.mjs';
 import {
-  Cuenta, Persona, TipoContribuyente, TipoEmisionDocumento,
+  DetalleVenta,
+  Persona, TipoContribuyente, TipoEmisionDocumento, Transaccion,
 } from './index.mjs';
 
 class Servicio extends psql.Model {
@@ -12,11 +13,16 @@ class Servicio extends psql.Model {
     this.belongsTo(TipoEmisionDocumento, {
       foreignKey: 'id_tipo_emision_documento',
     });
-    this.belongsTo(Cuenta, {
-      foreignKey: 'id_cuenta',
-    });
     this.belongsTo(Persona, {
       foreignKey: 'id_cliente',
+    });
+    this.hasOne(DetalleVenta, {
+      foreignKey: 'id_servicio',
+      hooks: true,
+      onDelete: 'CASCADE',
+    });
+    this.belongsTo(Transaccion, {
+      foreignKey: 'id_transaccion',
     });
   }
 }
@@ -33,6 +39,14 @@ Servicio.init(
       allowNull: false,
       references: {
         model: 'ctl_tipo_contribuyente',
+        key: 'id',
+      },
+    },
+    id_transaccion: {
+      type: psql.Sequelize.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'mnt_transaccion',
         key: 'id',
       },
     },

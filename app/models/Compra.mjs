@@ -1,16 +1,13 @@
 import psql from 'sequelize';
 import DB from '../nucleo/DB.mjs';
 import {
-  Cuenta, DetalleCompra, Persona, TipoContribuyente,
+  DetalleCompra, Persona, TipoContribuyente,
 } from './index.mjs';
 
 class Compra extends psql.Model {
   static associate() {
     this.belongsTo(TipoContribuyente, {
       foreignKey: 'id_tipo_contribuyente',
-    });
-    this.belongsTo(Cuenta, {
-      foreignKey: 'id_cuenta',
     });
     this.hasOne(DetalleCompra, {
       foreignKey: 'id_compra',
@@ -50,16 +47,16 @@ Compra.init(
       type: psql.Sequelize.DATE,
       allowNull: false,
     },
-    fecha_contable: {
-      type: psql.Sequelize.DATE,
-      allowNull: false,
-    },
     descripcion: {
       type: psql.Sequelize.STRING(250),
       allowNull: false,
     },
     numero_documento_ccf: {
       type: psql.Sequelize.STRING(20),
+      allowNull: false,
+    },
+    es_sujeto_excluido: {
+      type: psql.Sequelize.BOOLEAN,
       allowNull: false,
     },
     id_proveedor: {
@@ -70,9 +67,13 @@ Compra.init(
         key: 'id',
       },
     },
-    es_sujeto_excluido: {
-      type: psql.Sequelize.BOOLEAN,
+    id_transaccion: {
+      type: psql.Sequelize.INTEGER,
       allowNull: false,
+      references: {
+        model: 'mnt_transaccion',
+        key: 'id',
+      },
     },
   },
   {

@@ -1,8 +1,12 @@
 import psql from 'sequelize';
 import DB from '../nucleo/DB.mjs';
+import { Servicio } from './index.mjs';
 
 class DetalleVenta extends psql.Model {
   static associate() {
+    this.belongsTo(Servicio, {
+      foreignKey: 'id_servicio',
+    });
   }
 }
 

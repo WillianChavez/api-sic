@@ -1,17 +1,16 @@
 import psql from 'sequelize';
 import DB from '../nucleo/DB.mjs';
-import { Compra, Servicio, TipoCuenta } from './index.mjs';
+import { TipoCuenta, TransaccionCuenta } from './index.mjs';
 
 class Cuenta extends psql.Model {
   static associate() {
     this.belongsTo(TipoCuenta, {
       foreignKey: 'id_tipo_cuenta',
     });
-    this.hasMany(Compra, {
+    this.hasMany(TransaccionCuenta, {
       foreignKey: 'id_cuenta',
-    });
-    this.hasMany(Servicio, {
-      foreignKey: 'id_cuenta',
+      hooks: true,
+      onDelete: 'CASCADE',
     });
   }
 }

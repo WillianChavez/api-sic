@@ -8,11 +8,11 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      id_cuenta: {
+      id_transaccion: {
         type: psql.Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'mnt_cuenta',
+          model: 'mnt_transaccion',
           key: 'id',
         },
       },
