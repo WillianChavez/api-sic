@@ -28,17 +28,21 @@ export default class CompraController {
       include: [
         {
           model: DetalleCompra,
+          as: 'detalle_compra',
         },
         {
           model: Transaccion,
+          as: 'transaccion_compra',
           include: [
             {
               model: TransaccionCuenta,
+              as: 'transaccion_cuenta',
             },
           ],
         },
         {
           model: Persona,
+          as: 'proveedor',
         },
       ],
     });

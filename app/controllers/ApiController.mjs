@@ -359,6 +359,7 @@ export default class ApiController {
         {
           model: Usuario,
           attributes: ['id', 'email', 'last_login'],
+          as: 'usuario_refreshtoken',
         },
       ],
     });
