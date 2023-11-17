@@ -1,5 +1,8 @@
-import { Servicio, DetalleVenta } from '../models/index.mjs';
+import {
+  Servicio, DetalleVenta, Transaccion, Persona, TransaccionCuenta,
+} from '../models/index.mjs';
 import HttpCode from '../../configs/httpCode.mjs';
+import DB from '../nucleo/DB.mjs';
 
 export default class ServicioController {
   static async index(req, res) {
@@ -14,13 +17,60 @@ export default class ServicioController {
   }
 
   static async create(req, res) {
-    const { detalleVenta, ...newServicio } = req.body;
-    const servicio = await Servicio.create(newServicio);
-    const detalle = await DetalleVenta.create({
-      ...detalleVenta,
-      id_servicio: servicio.id,
-    });
-    return res.status(HttpCode.HTTP_CREATED).json({ servicio, detalle });
+    const t = await DB.connection().transaction();
+    try {
+      const {
+        detalleVenta, persona, cuentas, ...servicio
+      } = req.body;
+
+      let personaModel = null;
+
+      const personaExistente = await Persona.findOne({
+        where: {
+          nit: persona.nit,
+        },
+      });
+
+      if (personaExistente) {
+        personaModel = await personaExistente.update(
+          { ...persona },
+          {
+            transaction: t,
+          },
+        );
+      } else {
+        personaModel = await Persona.create(
+          { ...persona },
+          {
+            transaction: t,
+          },
+        );
+      }
+
+      const transaccion = await Transaccion.create({}, { transaction: t });
+
+      await TransaccionCuenta.bulkCreate(
+        cuentas.map((cuenta) => ({ ...cuenta, id_transaccion: transaccion.id })),
+        { transaction: t },
+      );
+
+      const newServicio = await Servicio.create(
+        { ...servicio, id_transaccion: transaccion.id, id_persona: personaModel.id },
+        { transaction: t },
+      );
+
+      await DetalleVenta.create(
+        { ...detalleVenta, id_servicio: newServicio.id },
+        { transaction: t },
+      );
+
+      await t.commit();
+
+      return res.status(HttpCode.HTTP_OK).json(newServicio);
+    } catch (error) {
+      t.rollback();
+      throw error;
+    }
   }
 
   static async show(req, res) {
