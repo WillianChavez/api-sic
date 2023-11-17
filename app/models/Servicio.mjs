@@ -27,7 +27,7 @@ class Servicio extends psql.Model {
     });
     this.belongsTo(Transaccion, {
       foreignKey: 'id_transaccion',
-      as: 'transaccion',
+      as: 'transaccion_servicio',
     });
   }
 }

@@ -7,6 +7,7 @@ class RefreshToken extends psql.Model {
   static associate() {
     this.belongsTo(Usuario, {
       foreignKey: 'id_usuario',
+      as: 'usuario_refreshtoken',
     });
   }
 }

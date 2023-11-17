@@ -18,20 +18,24 @@ class Rol extends psql.Model {
       through: RutaRol,
       foreignKey: 'id_rol',
       otherKey: 'id_ruta',
+      as: 'ruta_rol_rol',
     });
     this.belongsToMany(Perfil, {
       through: PerfilRol,
       foreignKey: 'id_rol',
       otherKey: 'id_perfil',
+      as: 'perfil_rol_rol',
     });
 
     this.belongsToMany(Usuario, {
       through: UsuarioRol,
       foreignKey: 'id_rol',
       otherKey: 'id_usuario',
+      as: 'usuario_rol_rol',
     });
     this.belongsTo(TipoRol, {
       foreignKey: 'id_tipo_rol',
+      as: 'tipo_rol_rol',
     });
   }
 }

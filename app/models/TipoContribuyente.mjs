@@ -6,11 +6,11 @@ class TipoContribuyente extends psql.Model {
   static associate() {
     this.hasMany(Compra, {
       foreignKey: 'id_tipo_contribuyente',
-      as: 'compra',
+      as: 'compra_tipo_contribuyente',
     });
     this.hasMany(Servicio, {
       foreignKey: 'id_tipo_contribuyente',
-      as: 'servicio',
+      as: 'servicio_tipo_contribuyente',
     });
   }
 }

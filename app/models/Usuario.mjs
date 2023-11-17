@@ -34,19 +34,23 @@ class Usuario extends psql.Model {
       through: UsuarioRol,
       foreignKey: 'id_usuario',
       otherKey: 'id_rol',
+      as: 'roles_usuario_usuario',
     });
     this.belongsToMany(MetodoAutenticacion, {
       through: MetodoAutenticacionUsuario,
       foreignKey: 'id_usuario',
       otherKey: 'id_metodo',
+      as: 'metodos_autenticacion_usuario',
     });
     this.hasMany(RefreshToken, {
       foreignKey: 'id_usuario',
+      as: 'refresh_tokens_usuario',
     });
     this.belongsToMany(Perfil, {
       through: UsuarioPerfil,
       foreignKey: 'id_usuario',
       otherKey: 'id_perfil',
+      as: 'perfiles_usuario_usuario',
     });
   }
 

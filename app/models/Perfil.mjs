@@ -13,12 +13,14 @@ class Perfil extends psql.Model {
       through: UsuarioPerfil,
       foreignKey: 'id_perfil',
       otherKey: 'id_usuario',
+      as: 'usuarios_perfil',
     });
 
     this.belongsToMany(Rol, {
       through: PerfilRol,
       foreignKey: 'id_perfil',
       otherKey: 'id_rol',
+      as: 'roles_perfil',
     });
   }
 
