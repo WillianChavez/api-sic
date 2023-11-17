@@ -24,6 +24,25 @@ module.exports = {
         type: psql.Sequelize.STRING(20),
         allowNull: false,
       },
+      requerido: {
+        type: psql.Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+      created_at: {
+        type: psql.Sequelize.DATE,
+        allowNull: false,
+        defaultValue: psql.Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+      updated_at: {
+        type: psql.Sequelize.DATE,
+        allowNull: true,
+        defaultValue: psql.Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+      deleted_at: {
+        type: psql.Sequelize.DATE,
+        allowNull: true,
+      },
     });
   },
 

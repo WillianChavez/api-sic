@@ -38,9 +38,32 @@ Cuenta.init(
       type: psql.Sequelize.STRING(20),
       allowNull: false,
     },
+    requerido: {
+      type: psql.Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+    created_at: {
+      type: psql.Sequelize.DATE,
+      allowNull: false,
+      defaultValue: psql.Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+    updated_at: {
+      type: psql.Sequelize.DATE,
+      allowNull: true,
+      defaultValue: psql.Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+    deleted_at: {
+      type: psql.Sequelize.DATE,
+      allowNull: true,
+    },
   },
   {
-    timestamps: false,
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
+    paranoid: true,
     sequelize: DB.connection(),
     tableName: 'mnt_cuenta',
   },
