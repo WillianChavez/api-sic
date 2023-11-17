@@ -14,6 +14,9 @@ module.exports = {
           {
             nombre: 'SUPER_ADMIN',
           },
+          {
+            nombre: 'USUARIO',
+          },
         ],
         {
           returning: ['id'],
@@ -198,7 +201,7 @@ module.exports = {
             nombre: 'perfiles',
             uri: '/profiles',
             nombre_uri: 'profiles',
-            mostrar: true,
+            mostrar: false,
             icono: 'mdi-account',
             orden: 2,
             publico: false,
@@ -228,7 +231,7 @@ module.exports = {
             nombre: 'roles',
             uri: '/roles',
             nombre_uri: 'roles',
-            mostrar: true,
+            mostrar: false,
             icono: 'mdi-account-group',
             orden: null,
             publico: false,
@@ -248,7 +251,7 @@ module.exports = {
             nombre: 'rutas',
             uri: '/paths',
             nombre_uri: 'paths',
-            mostrar: true,
+            mostrar: false,
             icono: 'mdi-routes',
             orden: 2,
             publico: false,
