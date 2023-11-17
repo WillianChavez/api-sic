@@ -28,10 +28,6 @@ module.exports = {
         type: psql.Sequelize.DATE,
         allowNull: false,
       },
-      fecha_contable: {
-        type: psql.Sequelize.DATE,
-        allowNull: false,
-      },
       descripcion: {
         type: psql.Sequelize.STRING(250),
         allowNull: false,

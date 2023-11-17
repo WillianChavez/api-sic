@@ -29,14 +29,14 @@ MetodoAutenticacion.associate();
 TipoContribuyente.associate();
 TipoCuenta.associate();
 Cuenta.associate();
+Transaccion.associate();
+TransaccionCuenta.associate();
 TipoEmisionDocumento.associate();
 Servicio.associate();
 Compra.associate();
 DetalleCompra.associate();
 DetalleVenta.associate();
 Persona.associate();
-Transaccion.associate();
-TransaccionCuenta.associate();
 
 export {
   RefreshToken,

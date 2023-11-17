@@ -1,7 +1,7 @@
 import psql from 'sequelize';
 import DB from '../nucleo/DB.mjs';
 import {
-  DetalleCompra, Persona, TipoContribuyente,
+  DetalleCompra, Persona, TipoContribuyente, Transaccion,
 } from './index.mjs';
 
 class Compra extends psql.Model {
@@ -17,6 +17,9 @@ class Compra extends psql.Model {
     this.belongsTo(Persona, {
       foreignKey: 'id_proveedor',
     });
+    this.belongsTo(Transaccion, {
+      foreignKey: 'id_transaccion',
+    });
   }
 }
 
@@ -27,11 +30,11 @@ Compra.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    id_compra: {
+    id_transaccion: {
       type: psql.Sequelize.INTEGER,
       allowNull: false,
       references: {
-        model: 'mnt_Compra',
+        model: 'mnt_transaccion',
         key: 'id',
       },
     },
@@ -55,10 +58,6 @@ Compra.init(
       type: psql.Sequelize.STRING(20),
       allowNull: false,
     },
-    es_sujeto_excluido: {
-      type: psql.Sequelize.BOOLEAN,
-      allowNull: false,
-    },
     id_proveedor: {
       type: psql.Sequelize.INTEGER,
       allowNull: false,
@@ -67,13 +66,9 @@ Compra.init(
         key: 'id',
       },
     },
-    id_transaccion: {
-      type: psql.Sequelize.INTEGER,
+    es_sujeto_excluido: {
+      type: psql.Sequelize.BOOLEAN,
       allowNull: false,
-      references: {
-        model: 'mnt_transaccion',
-        key: 'id',
-      },
     },
   },
   {

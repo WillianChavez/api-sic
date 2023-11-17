@@ -347,7 +347,7 @@ module.exports = {
           },
           {
             nombre: 'servicios',
-            uri: '/servicios/editar',
+            uri: '/servicios/editar/:id',
             nombre_uri: 'servicios-editar',
             mostrar: false,
             icono: 'mdi-cog',
@@ -378,7 +378,7 @@ module.exports = {
           },
           {
             nombre: 'compras',
-            uri: '/compras/editar',
+            uri: '/compras/editar/:id',
             nombre_uri: 'compras-editar',
             mostrar: false,
             icono: 'mdi-cart',
