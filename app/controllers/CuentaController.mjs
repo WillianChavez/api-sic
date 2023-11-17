@@ -25,6 +25,7 @@ export default class CuentaController {
       include: [
         {
           model: TipoCuenta,
+          as: 'tipo_cuenta_cuenta',
         },
       ],
     });

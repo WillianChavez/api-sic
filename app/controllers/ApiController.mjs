@@ -64,6 +64,7 @@ export default class ApiController {
           model: MetodoAutenticacion,
           attributes: ['id', 'nombre', 'icono'],
           through: { attributes: ['is_primary', 'id'] },
+          as: 'metodos_autenticacion_usuario',
         },
       ],
     });
@@ -129,7 +130,7 @@ export default class ApiController {
     await usuario.update({
       last_login: moment().tz('America/El_Salvador').format(),
     });
-    const metodosAutenticacion = usuario.MetodoAutenticacions.map((row) => ({
+    const metodosAutenticacion = usuario.metodos_autenticacion_usuario.map((row) => ({
       nombre: row.nombre,
       descripcion: row.descripcion,
       icono: row.icono,
