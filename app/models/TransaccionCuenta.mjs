@@ -6,9 +6,11 @@ class TransaccionCuenta extends psql.Model {
   static associate() {
     this.belongsTo(Transaccion, {
       foreignKey: 'id_transaccion',
+      as: 'transaccion',
     });
     this.belongsTo(Cuenta, {
       foreignKey: 'id_cuenta',
+      as: 'cuenta',
     });
   }
 }

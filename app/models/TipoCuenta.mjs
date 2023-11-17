@@ -6,6 +6,7 @@ class TipoCuenta extends psql.Model {
   static associate() {
     this.hasMany(Cuenta, {
       foreignKey: 'id_tipo_cuenta',
+      as: 'cuentas',
     });
   }
 }

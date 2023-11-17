@@ -6,11 +6,13 @@ class Cuenta extends psql.Model {
   static associate() {
     this.belongsTo(TipoCuenta, {
       foreignKey: 'id_tipo_cuenta',
+      as: 'tipo_cuenta',
     });
     this.hasMany(TransaccionCuenta, {
       foreignKey: 'id_cuenta',
       hooks: true,
       onDelete: 'CASCADE',
+      as: 'transaccion_cuenta',
     });
   }
 }

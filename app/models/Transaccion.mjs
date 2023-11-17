@@ -8,18 +8,21 @@ class Transaccion extends psql.Model {
       foreignKey: 'id_transaccion',
       hooks: true,
       onDelete: 'CASCADE',
+      as: 'servicio',
     });
 
     this.hasOne(Compra, {
       foreignKey: 'id_transaccion',
       hooks: true,
       onDelete: 'CASCADE',
+      as: 'compra',
     });
 
     this.hasMany(TransaccionCuenta, {
       foreignKey: 'id_transaccion',
       hooks: true,
       onDelete: 'CASCADE',
+      as: 'transaccion_cuenta',
     });
   }
 }

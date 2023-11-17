@@ -6,6 +6,7 @@ class DetalleCompra extends psql.Model {
   static associate() {
     this.belongsTo(Compra, {
       foreignKey: 'id_compra',
+      as: 'compra',
     });
   }
 }

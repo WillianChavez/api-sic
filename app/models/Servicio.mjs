@@ -9,20 +9,25 @@ class Servicio extends psql.Model {
   static associate() {
     this.belongsTo(TipoContribuyente, {
       foreignKey: 'id_tipo_contribuyente',
+      as: 'tipo_contribuyente',
     });
     this.belongsTo(TipoEmisionDocumento, {
       foreignKey: 'id_tipo_emision_documento',
+      as: 'tipo_emision_documento',
     });
     this.belongsTo(Persona, {
       foreignKey: 'id_cliente',
+      as: 'cliente',
     });
     this.hasOne(DetalleVenta, {
       foreignKey: 'id_servicio',
       hooks: true,
       onDelete: 'CASCADE',
+      as: 'detalle_venta',
     });
     this.belongsTo(Transaccion, {
       foreignKey: 'id_transaccion',
+      as: 'transaccion',
     });
   }
 }

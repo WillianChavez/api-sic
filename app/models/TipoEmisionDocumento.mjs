@@ -6,6 +6,7 @@ class TipoEmisionDocumento extends psql.Model {
   static associate() {
     this.hasMany(Servicio, {
       foreignKey: 'id_tipo_emision_documento',
+      as: 'servicio',
     });
   }
 }

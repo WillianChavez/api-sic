@@ -8,17 +8,21 @@ class Compra extends psql.Model {
   static associate() {
     this.belongsTo(TipoContribuyente, {
       foreignKey: 'id_tipo_contribuyente',
+      as: 'tipo_contribuyente',
     });
     this.hasOne(DetalleCompra, {
       foreignKey: 'id_compra',
       hooks: true,
       onDelete: 'CASCADE',
+      as: 'detalle_compra',
     });
     this.belongsTo(Persona, {
       foreignKey: 'id_proveedor',
+      as: 'proveedor',
     });
     this.belongsTo(Transaccion, {
       foreignKey: 'id_transaccion',
+      as: 'transaccion',
     });
   }
 }

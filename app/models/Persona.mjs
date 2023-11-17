@@ -6,9 +6,11 @@ class Persona extends psql.Model {
   static associate() {
     this.hasMany(Compra, {
       foreignKey: 'id_proveedor',
+      as: 'compra',
     });
     this.hasMany(Servicio, {
       foreignKey: 'id_cliente',
+      as: 'servicio',
     });
   }
 }

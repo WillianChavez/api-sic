@@ -6,6 +6,7 @@ class DetalleVenta extends psql.Model {
   static associate() {
     this.belongsTo(Servicio, {
       foreignKey: 'id_servicio',
+      as: 'servicio',
     });
   }
 }
