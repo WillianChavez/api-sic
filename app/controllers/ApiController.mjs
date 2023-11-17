@@ -366,14 +366,14 @@ export default class ApiController {
     if (!refreshTokenExist) {
       throw new NoAuthException();
     }
-    const roles = await getRols.roles(refreshTokenExist.Usuario.id);
+    const roles = await getRols.roles(refreshTokenExist.usuario_refreshtoken.id);
     const tokenValidTime = moment(refreshTokenExist.valid).valueOf();
     const nowTime = moment().tz('America/El_Salvador').valueOf();
     if (tokenValidTime < nowTime) {
       throw new NoAuthException('El refresh token porporcionado no es valido');
     }
 
-    const { Usuario: usuario } = refreshTokenExist;
+    const { usuario_refreshtoken: usuario } = refreshTokenExist;
 
     const userDatatoken = {
       id: usuario.id,
@@ -390,7 +390,7 @@ export default class ApiController {
       process.env.SECRET_KEY,
     );
 
-    const newRefreshToken = await Auth.refresh_token(refreshTokenExist.Usuario);
+    const newRefreshToken = await Auth.refresh_token(refreshTokenExist.usuario_refreshtoken);
     await refreshTokenExist.update({
       valid: moment()
         .add(
