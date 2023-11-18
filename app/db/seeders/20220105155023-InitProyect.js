@@ -177,6 +177,9 @@ module.exports = {
           { name: 'ROLE_ADMIN_REPORT_PURCHASE_BOOK_LIST', id_tipo_rol: admin.id },
           // reporte de libro de diario mayor
           { name: 'ROLE_ADMIN_REPORT_GENERAL_LEDGER_LIST', id_tipo_rol: admin.id },
+          { name: 'ROLE_ADMIN_REPORT_LEDGER_LIST', id_tipo_rol: admin.id },
+          { name: 'ROLE_ADMIN_REPORT_LEDGER_ST', id_tipo_rol: admin.id },
+
         ],
         {
           returning: ['id'],
@@ -447,8 +450,18 @@ module.exports = {
           // reporte de libro de diario mayor
           {
             nombre: 'reportes',
-            uri: '/reportes/libro-diario-mayor',
-            nombre_uri: 'reportes-libro-diario-mayor',
+            uri: '/reportes/libro-diario',
+            nombre_uri: 'reportes-libro-diario',
+            mostrar: false,
+            icono: 'mdi-file-chart',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          {
+            nombre: 'reportes',
+            uri: '/reportes/libro-mayor',
+            nombre_uri: 'reportes-libro-mayor',
             mostrar: false,
             icono: 'mdi-file-chart',
             orden: null,
