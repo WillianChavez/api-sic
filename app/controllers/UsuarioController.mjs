@@ -51,7 +51,19 @@ export default class UsuarioController {
     const { rows: usuarios, count: totalRows } = await Usuario.findAndCountAll({
       ...options,
       attributes: { exclude: ['password', 'token_valid_after', 'two_factor_status'] },
-      include: [Rol, Perfil],
+      // include: [Rol, Perfil],
+      include: [
+        {
+          model: Rol,
+          through: { attributes: [] },
+          as: 'roles_usuario_usuario',
+        },
+        {
+          model: Perfil,
+          through: { attributes: [] },
+          as: 'perfiles_usuario_usuario',
+        },
+      ],
       order: ['id'],
       where: filters,
     });
