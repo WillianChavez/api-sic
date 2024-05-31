@@ -138,12 +138,24 @@ export default class UsuarioController {
           password: passwordCrypt,
           is_suspended: isSuspended,
           two_factor_status: process.env.TWO_FACTOR_AUTH === 'true',
+          verified: true,
         },
         { transaction: t },
       );
 
-      await usuario.addPerfils(perfiles, { transaction: t });
-      await usuario.addRols(roles, { transaction: t });
+      // await usuario.addPerfils(perfiles, { transaction: t });
+
+      await perfiles.forEach(async (perfil) => {
+        await UsuarioPerfil.create(
+          {
+            id_usuario: usuario.id,
+            id_perfil: perfil,
+          },
+          { transaction: t },
+        );
+      });
+
+      // await usuario.addRols(roles, { transaction: t });
       const idUsuario = usuario.id;
       const newToken = await Security.generateTwoFactorAuthCode(usuario.email);
       await MetodoAutenticacionUsuario.create(
@@ -187,13 +199,13 @@ export default class UsuarioController {
         },
       ];
 
-      await Mailer.sendMail({
-        email: usuario.email,
-        header,
-        subject: 'Verificacion de correo electronico',
-        message: 'Para verificar tu cuenta debes de hacer click en el siguiente enlace:',
-        body,
-      });
+      // await Mailer.sendMail({
+      //   email: usuario.email,
+      //   header,
+      //   subject: 'Verificacion de correo electronico',
+      //   message: 'Para verificar tu cuenta debes de hacer click en el siguiente enlace:',
+      //   body,
+      // });
 
       await t.commit();
 
@@ -261,8 +273,8 @@ export default class UsuarioController {
       `No se ha encontrado el usuario con id ${id}`,
       {
         include: [
-          { model: Perfil, through: { attributes: [] } },
-          { model: Rol, through: { attributes: [] } },
+          { model: Perfil, through: { attributes: [] }, as: 'perfiles_usuario_usuario' },
+          { model: Rol, through: { attributes: [] }, as: 'roles_usuario_usuario' },
         ],
       },
     );

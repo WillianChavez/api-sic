@@ -29,7 +29,11 @@ export default class PerfilController {
     if (nombre) filtro.nombre = { [Op.iLike]: `%${nombre}%` };
     if (codigo) filtro.codigo = { [Op.iLike]: `%${codigo}%` };
     const { count: totalRows, rows: perfiles } = await Perfil.findAndCountAll({
-      include: [{ model: Rol, required: true }],
+      include: [{
+        model: Rol,
+        required: true,
+        as: 'roles_perfil',
+      }],
       where: filtro,
       ...options,
     });

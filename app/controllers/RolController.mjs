@@ -27,7 +27,10 @@ export default class RolController {
     if (nombre) filtro.name = { [Op.iLike]: `%${nombre}%` };
 
     const { count: totalRows, rows: roles } = await Rol.findAndCountAll({
-      include: [TipoRol],
+      include: [{
+        model: TipoRol,
+        as: 'tipo_rol_rol',
+      }],
       where: filtro,
       ...options,
     });
