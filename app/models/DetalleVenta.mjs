@@ -1,11 +1,14 @@
 import psql from 'sequelize';
 import DB from '../nucleo/DB.mjs';
-import { Servicio } from './index.mjs';
+import { TipoPago, Venta } from './index.mjs';
 
 class DetalleVenta extends psql.Model {
   static associate() {
-    this.belongsTo(Servicio, {
-      foreignKey: 'id_servicio',
+    this.belongsTo(TipoPago, {
+      foreignKey: 'id_tipo_pago',
+    });
+    this.belongsTo(Venta, {
+      foreignKey: 'id_venta',
     });
   }
 }
@@ -17,29 +20,21 @@ DetalleVenta.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    id_servicio: {
+    id_tipo_pago: {
       type: psql.Sequelize.INTEGER,
       allowNull: false,
-      references: {
-        model: 'mnt_servicio',
-        key: 'id',
-      },
     },
-    numero_factura: {
-      type: psql.Sequelize.STRING(20),
+    id_venta: {
+      type: psql.Sequelize.VARCHAR(20),
       allowNull: false,
     },
-    gravado_local: {
-      type: psql.Sequelize.DECIMAL(20, 2),
-      allowNull: true,
-    },
-    cantidad_exento: {
-      type: psql.Sequelize.DECIMAL(20, 2),
+    total: {
+      type: psql.Sequelize.DECIMAL,
       allowNull: false,
     },
-    anticipo_uno_porciento_retenido: {
-      type: psql.Sequelize.DECIMAL(20, 2),
-      allowNull: true,
+    cantidad_servicios: {
+      type: psql.Sequelize.INTEGER,
+      allowNull: false,
     },
   },
   {

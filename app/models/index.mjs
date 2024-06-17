@@ -14,6 +14,7 @@ import Persona from './Persona.mjs';
 import TipoServicio from './TipoServicio.mjs';
 import Cliente from './Cliente.mjs';
 import Venta from './Venta.mjs';
+import TipoPago from './TipoPago.mjs';
 
 TipoServicio.associate();
 Usuario.associate();
@@ -27,6 +28,7 @@ Venta.associate();
 Cliente.associate();
 DetalleVenta.associate();
 Persona.associate();
+TipoPago.associate();
 
 export {
   RefreshToken,
@@ -45,4 +47,5 @@ export {
   TipoServicio,
   Venta,
   Cliente,
+  TipoPago,
 };
