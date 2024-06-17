@@ -25,7 +25,7 @@ TipoPago.init(
   {
     timestamps: false,
     sequelize: DB.connection(),
-    tableName: 'mnt_tipo_pago',
+    tableName: 'ctl_tipo_pago',
   },
 );
 

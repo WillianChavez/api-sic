@@ -2,32 +2,37 @@ const psql = require('sequelize');
 
 module.exports = {
   up: async (queryInterface) => {
-    await queryInterface.createTable('mnt_servicio', {
+    await queryInterface.createTable('mnt_servicio_venta', {
       id: {
         type: psql.Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      nombre: {
-        type: psql.Sequelize.STRING(250),
+      id_venta: {
+        type: psql.Sequelize.STRING(20),
         allowNull: false,
       },
-      fecha: {
+      id_servicio: {
+        type: psql.Sequelize.INTEGER,
+        allowNull: false,
+      },
+      fecha_defuncion: {
         type: psql.Sequelize.DATE,
+        allowNull: true,
+      },
+      cantidad: {
+        type: psql.Sequelize.INTEGER,
         allowNull: false,
       },
-      descripcion: {
-        type: psql.Sequelize.STRING(250),
-        allowNull: false,
-      },
-      precio_base: {
+      subtotal: {
         type: psql.Sequelize.DECIMAL,
         allowNull: false,
+        defaultValue: 0,
       },
     });
   },
 
   down: async (queryInterface) => {
-    await queryInterface.dropTable('mnt_servicio');
+    await queryInterface.dropTable('mnt_servicio_venta');
   },
 };

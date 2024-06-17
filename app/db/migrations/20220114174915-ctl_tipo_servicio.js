@@ -2,20 +2,20 @@ const psql = require('sequelize');
 
 module.exports = {
   up: async (queryInterface) => {
-    await queryInterface.createTable('mnt_persona', {
+    await queryInterface.createTable('ctl_tipo_servicio', {
       id: {
         type: psql.Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       nombre: {
-        type: psql.Sequelize.STRING(250),
+        type: psql.Sequelize.STRING(255),
         allowNull: false,
       },
     });
   },
 
   down: async (queryInterface) => {
-    await queryInterface.dropTable('mnt_persona');
+    await queryInterface.dropTable('ctl_tipo_servicio');
   },
 };

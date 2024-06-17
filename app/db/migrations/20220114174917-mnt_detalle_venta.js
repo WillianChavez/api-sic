@@ -8,22 +8,23 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      id_servicio: {
+      id_tipo_pago: {
         type: psql.Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: 'mnt_servicio',
-          key: 'id',
-        },
       },
-      numero_factura: {
-        type: psql.Sequelize.STRING(20),
+      id_venta: {
+        type: psql.Sequelize.VARCHAR(20),
         allowNull: false,
       },
-      gravado_local: {
-        type: psql.Sequelize.DECIMAL(20, 2),
-        allowNull: true,
+      total: {
+        type: psql.Sequelize.DECIMAL,
+        allowNull: false,
       },
+      cantidad_servicios: {
+        type: psql.Sequelize.INTEGER,
+        allowNull: false,
+      },
+
     });
   },
 
