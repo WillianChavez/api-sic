@@ -1,11 +1,12 @@
 import psql from 'sequelize';
 import DB from '../nucleo/DB.mjs';
-import {
-} from './index.mjs';
+import { TipoServicio } from './index.mjs';
 
 class Servicio extends psql.Model {
   static associate() {
-
+    this.belongsTo(TipoServicio, {
+      foreignKey: 'id_tipo_servicio',
+    });
   }
 }
 
@@ -15,6 +16,10 @@ Servicio.init(
       type: psql.Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+    },
+    id_tipo_servicio: {
+      type: psql.Sequelize.INTEGER,
+      allowNull: false,
     },
     nombre: {
       type: psql.Sequelize.STRING(250),
@@ -29,6 +34,10 @@ Servicio.init(
       allowNull: false,
     },
     precio_base: {
+      type: psql.Sequelize.DECIMAL,
+      allowNull: false,
+    },
+    costo: {
       type: psql.Sequelize.DECIMAL,
       allowNull: false,
     },

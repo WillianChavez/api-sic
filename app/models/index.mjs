@@ -11,7 +11,9 @@ import MetodoAutenticacion from './MetodoAutenticacion.mjs';
 import Servicio from './Servicio.mjs';
 import DetalleVenta from './DetalleVenta.mjs';
 import Persona from './Persona.mjs';
+import TipoServicio from './TipoServicio.mjs';
 
+TipoServicio.associate();
 Usuario.associate();
 RefreshToken.associate();
 Perfil.associate();
@@ -36,4 +38,5 @@ export {
   Servicio,
   DetalleVenta,
   Persona,
+  TipoServicio,
 };
