@@ -6,7 +6,6 @@ class DetalleVenta extends psql.Model {
   static associate() {
     this.belongsTo(Servicio, {
       foreignKey: 'id_servicio',
-      as: 'servicio',
     });
   }
 }
@@ -35,18 +34,6 @@ DetalleVenta.init(
       allowNull: true,
     },
     cantidad_exento: {
-      type: psql.Sequelize.DECIMAL(20, 2),
-      allowNull: false,
-    },
-    cantidad_no_sujeta: {
-      type: psql.Sequelize.DECIMAL(20, 2),
-      allowNull: true,
-    },
-    gravado_exportacion: {
-      type: psql.Sequelize.DECIMAL(20, 2),
-      allowNull: true,
-    },
-    total_ventas: {
       type: psql.Sequelize.DECIMAL(20, 2),
       allowNull: false,
     },

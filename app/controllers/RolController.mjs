@@ -29,7 +29,6 @@ export default class RolController {
     const { count: totalRows, rows: roles } = await Rol.findAndCountAll({
       include: [{
         model: TipoRol,
-        as: 'tipo_rol_rol',
       }],
       where: filtro,
       ...options,

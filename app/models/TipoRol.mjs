@@ -7,7 +7,6 @@ class TipoRol extends psql.Model {
   static associate() {
     this.hasMany(Rol, {
       foreignKey: 'id_tipo_rol',
-      as: 'roles_tipo_rol',
     });
   }
 }

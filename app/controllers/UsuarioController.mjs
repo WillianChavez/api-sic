@@ -56,12 +56,10 @@ export default class UsuarioController {
         {
           model: Rol,
           through: { attributes: [] },
-          as: 'roles_usuario_usuario',
         },
         {
           model: Perfil,
           through: { attributes: [] },
-          as: 'perfiles_usuario_usuario',
         },
       ],
       order: ['id'],
@@ -273,8 +271,8 @@ export default class UsuarioController {
       `No se ha encontrado el usuario con id ${id}`,
       {
         include: [
-          { model: Perfil, through: { attributes: [] }, as: 'perfiles_usuario_usuario' },
-          { model: Rol, through: { attributes: [] }, as: 'roles_usuario_usuario' },
+          { model: Perfil, through: { attributes: [] } },
+          { model: Rol, through: { attributes: [] } },
         ],
       },
     );

@@ -32,7 +32,6 @@ export default class PerfilController {
       include: [{
         model: Rol,
         required: true,
-        as: 'roles_perfil',
       }],
       where: filtro,
       ...options,

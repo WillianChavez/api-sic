@@ -12,15 +12,6 @@ module.exports = {
         type: psql.Sequelize.STRING(250),
         allowNull: false,
       },
-      nit: {
-        type: psql.Sequelize.STRING(20),
-        allowNull: false,
-      },
-      nrc: {
-        type: psql.Sequelize.STRING(20),
-        allowNull: true,
-      },
-
     });
   },
 

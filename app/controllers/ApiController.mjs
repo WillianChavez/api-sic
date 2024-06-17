@@ -64,7 +64,6 @@ export default class ApiController {
           model: MetodoAutenticacion,
           attributes: ['id', 'nombre', 'icono'],
           through: { attributes: ['is_primary', 'id'] },
-          as: 'metodos_autenticacion_usuario',
         },
       ],
     });
@@ -130,7 +129,7 @@ export default class ApiController {
     await usuario.update({
       last_login: moment().tz('America/El_Salvador').format(),
     });
-    const metodosAutenticacion = usuario.metodos_autenticacion_usuario.map((row) => ({
+    const metodosAutenticacion = usuario.MetodoAutenticacions.map((row) => ({
       nombre: row.nombre,
       descripcion: row.descripcion,
       icono: row.icono,
@@ -359,21 +358,20 @@ export default class ApiController {
         {
           model: Usuario,
           attributes: ['id', 'email', 'last_login'],
-          as: 'usuario_refreshtoken',
         },
       ],
     });
     if (!refreshTokenExist) {
       throw new NoAuthException();
     }
-    const roles = await getRols.roles(refreshTokenExist.usuario_refreshtoken.id);
+    const roles = await getRols.roles(refreshTokenExist.Usuario.id);
     const tokenValidTime = moment(refreshTokenExist.valid).valueOf();
     const nowTime = moment().tz('America/El_Salvador').valueOf();
     if (tokenValidTime < nowTime) {
       throw new NoAuthException('El refresh token porporcionado no es valido');
     }
 
-    const { usuario_refreshtoken: usuario } = refreshTokenExist;
+    const { Usuario: usuario } = refreshTokenExist;
 
     const userDatatoken = {
       id: usuario.id,
@@ -390,7 +388,7 @@ export default class ApiController {
       process.env.SECRET_KEY,
     );
 
-    const newRefreshToken = await Auth.refresh_token(refreshTokenExist.usuario_refreshtoken);
+    const newRefreshToken = await Auth.refresh_token(refreshTokenExist.Usuario);
     await refreshTokenExist.update({
       valid: moment()
         .add(

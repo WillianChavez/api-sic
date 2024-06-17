@@ -28,7 +28,7 @@ export default class RutaController {
     if (uri) filtro.uri = { [Op.iLike]: `%${uri}%` };
 
     const { count: totalRows, rows: rutas } = await Ruta.findAndCountAll({
-      include: [{ model: Rol, as: 'roles_ruta' }],
+      include: [{ model: Rol }],
       where: filtro,
       ...options,
     });
@@ -189,7 +189,6 @@ export default class RutaController {
           model: Rol,
           where: { id: roles },
           attributes: [],
-          as: 'roles_ruta',
         },
       ],
       where: {
@@ -219,7 +218,6 @@ export default class RutaController {
         {
           model: Rol,
           attributes: [],
-          as: 'roles_ruta',
         },
       ],
       where: {
