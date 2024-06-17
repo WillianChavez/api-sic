@@ -12,6 +12,8 @@ import Servicio from './Servicio.mjs';
 import DetalleVenta from './DetalleVenta.mjs';
 import Persona from './Persona.mjs';
 import TipoServicio from './TipoServicio.mjs';
+import Cliente from './Cliente.mjs';
+import Venta from './Venta.mjs';
 
 TipoServicio.associate();
 Usuario.associate();
@@ -21,6 +23,8 @@ Rol.associate();
 Ruta.associate();
 MetodoAutenticacion.associate();
 Servicio.associate();
+Venta.associate();
+Cliente.associate();
 DetalleVenta.associate();
 Persona.associate();
 
@@ -39,4 +43,6 @@ export {
   DetalleVenta,
   Persona,
   TipoServicio,
+  Venta,
+  Cliente,
 };
