@@ -22,6 +22,17 @@ class Perfil extends psql.Model {
       otherKey: 'id_rol',
       as: 'roles_perfil',
     });
+    this.belongsToMany(Usuario, {
+      through: UsuarioPerfil,
+      foreignKey: 'id_perfil',
+      otherKey: 'id_usuario',
+    });
+
+    this.belongsToMany(Rol, {
+      through: PerfilRol,
+      foreignKey: 'id_perfil',
+      otherKey: 'id_rol',
+    });
   }
 
   toJSON() {

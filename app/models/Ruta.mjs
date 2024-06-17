@@ -12,15 +12,12 @@ class Ruta extends psql.Model {
       otherKey: 'id_rol',
       onDelete: 'CASCADE',
       hooks: true,
-      as: 'roles_ruta',
     });
     this.hasMany(Ruta, {
       foreignKey: 'id_ruta_padre',
-      as: 'ruta_padre',
     });
     this.hasOne(Ruta, {
       foreignKey: 'id_ruta_padre',
-      as: 'ruta_padre_2',
     });
   }
 

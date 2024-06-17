@@ -10,11 +10,9 @@ class MetodoAutenticacion extends psql.Model {
       through: MetodoAutenticacionUsuario,
       foreignKey: 'id_metodo',
       otherKey: 'id_usuario',
-      as: 'usuarios',
     });
     this.hasOne(MetodoAutenticacionUsuario, {
       foreignKey: 'id_metodo',
-      as: 'MetodoAutenticacionUsuario',
     });
   }
 

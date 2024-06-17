@@ -1,16 +1,11 @@
 import psql from 'sequelize';
 import DB from '../nucleo/DB.mjs';
-import { Compra, Servicio } from './index.mjs';
+import { Servicio } from './index.mjs';
 
 class Persona extends psql.Model {
   static associate() {
-    this.hasMany(Compra, {
-      foreignKey: 'id_proveedor',
-      as: 'compra_proveedor',
-    });
     this.hasMany(Servicio, {
       foreignKey: 'id_cliente',
-      as: 'servicio_cliente',
     });
   }
 }

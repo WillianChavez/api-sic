@@ -12,10 +12,8 @@ import routesRutas from './api/ruta.mjs';
 import recoveryPasswordSchema from '../app/schemas/RecoveryPasswordSchema.mjs';
 import loginSchema from '../app/schemas/LoginSchema.mjs';
 import twoFactorAuthSchema from '../app/schemas/TwoFactorAuthSchema.mjs';
-import routesCuenta from './api/cuenta.mjs';
 import routesCatalogo from './api/catalogo.mjs';
 import routesServicio from './api/servicio.mjs';
-import routesCompra from './api/compra.mjs';
 
 const router = Router();
 router.post('/v1/login', [validate(loginSchema)], Call(ApiController.login));
@@ -43,9 +41,7 @@ router.put(
 );
 router.post('/v1/password/reset/', Call(ApiController.resetPassword));
 
-router.use('/v1/cuentas', [auth], routesCuenta);
 router.use('/v1/catalogo', [auth], routesCatalogo);
 router.use('/v1/servicios', [auth], routesServicio);
-router.use('/v1/compras', [auth], routesCompra);
 
 export default router;
