@@ -1,11 +1,19 @@
 import psql from 'sequelize';
 import DB from '../nucleo/DB.mjs';
-import { TipoServicio } from './index.mjs';
+import { TipoServicio, Venta } from './index.mjs';
+import ServicioVenta from './ServicioVenta.mjs';
 
 class Servicio extends psql.Model {
   static associate() {
     this.belongsTo(TipoServicio, {
       foreignKey: 'id_tipo_servicio',
+    });
+    this.hasMany(ServicioVenta, {
+      foreignKey: 'id_servicio',
+    });
+    this.belongsToMany(Venta, {
+      through: ServicioVenta,
+      foreignKey: 'id_servicio',
     });
   }
 }
