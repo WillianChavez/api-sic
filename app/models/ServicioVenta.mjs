@@ -32,9 +32,14 @@ ServicioVenta.init(
       type: psql.Sequelize.DATE,
       allowNull: true,
     },
+    cantidad: {
+      type: psql.Sequelize.INTEGER,
+      allowNull: false,
+    },
     subtotal: {
       type: psql.Sequelize.DECIMAL,
       allowNull: false,
+      defaultValue: 0,
     },
   },
   {
