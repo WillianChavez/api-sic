@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 import moment from 'moment';
 import NoAuthException from '../../handlers/NoAuthException.mjs';
 import { Usuario } from '../models/index.mjs';
-import Security from '../services/security.mjs';
 import Handler from '../../handlers/Handler.mjs';
 
 // eslint-disable-next-line consistent-return
@@ -23,11 +22,6 @@ const Auth = async (req, res, next) => {
     });
 
     if (!usuario) throw new NoAuthException();
-
-    const frontAdmin = process.env.FRONT_ADMIN_HOST.split('||');
-    if (frontAdmin.includes(req.headers.origin)) {
-      if (!(await Security.isGranted(usuario.id, 'ROLE_USER_ADMIN'))) throw new NoAuthException();
-    }
 
     const fechaValidacionToken = moment(usuario.token_valid_after).valueOf();
 

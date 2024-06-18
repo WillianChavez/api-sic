@@ -8,7 +8,7 @@ module.exports = {
     try {
       const salt = bcrypt.genSaltSync();
 
-      const [PROFILE] = await queryInterface.bulkInsert(
+      const [PROFILE, EMPLEADO] = await queryInterface.bulkInsert(
         'mnt_perfil',
         [
           {
@@ -136,7 +136,6 @@ module.exports = {
       const ROLES_RUTAS_ADMIN = await queryInterface.bulkInsert(
         'mnt_rol',
         [
-          { name: 'ROLE_ADMIN_DASHBOARD_VIEW', id_tipo_rol: admin.id },
           // Roles de perfil
           { name: 'ROLE_ADMIN_PROFILE_LIST', id_tipo_rol: admin.id },
           { name: 'ROLE_ADMIN_PROFILE_CREATE', id_tipo_rol: admin.id },
@@ -180,7 +179,18 @@ module.exports = {
         },
       );
 
-      const RUTAS = await queryInterface.bulkInsert(
+      const ROLES_DASHBOARD = await queryInterface.bulkInsert(
+        'mnt_rol',
+        [
+          { name: 'ROLE_ADMIN_DASHBOARD_VIEW', id_tipo_rol: admin.id },
+
+        ],
+        {
+          returning: ['id'],
+          transaction: TRANSACTION,
+        },
+      );
+      const RUTA_DASHBOARD = await queryInterface.bulkInsert(
         'mnt_ruta',
         [
           {
@@ -193,6 +203,16 @@ module.exports = {
             publico: false,
             admin: true,
           },
+        ],
+        {
+          returning: ['id'],
+          transaction: TRANSACTION,
+        },
+      );
+
+      const RUTAS = await queryInterface.bulkInsert(
+        'mnt_ruta',
+        [
           {
             nombre: 'perfiles',
             uri: '/profiles',
@@ -344,7 +364,6 @@ module.exports = {
             publico: false,
             admin: true,
           },
-          // rutas para ver las cuentas
           {
             nombre: 'Tipo de Servicios',
             uri: '/tipo-servicios',
@@ -427,10 +446,58 @@ module.exports = {
         },
       );
 
+      const ROLES_VENTAS = await queryInterface.bulkInsert(
+        'mnt_rol',
+        [
+          { name: 'ROLE_VENTAS_LIST', id_tipo_rol: admin.id },
+          { name: 'ROLE_VENTAS_CREATE', id_tipo_rol: admin.id },
+        ],
+        {
+          returning: ['id'],
+          transaction: TRANSACTION,
+        },
+      );
+
+      const RUTAS_VENTAS = await queryInterface.bulkInsert(
+        'mnt_ruta',
+        [
+          {
+            nombre: 'ventas',
+            uri: '/ventas',
+            nombre_uri: 'ventas',
+            mostrar: true,
+            icono: 'mdi-cash-register',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          {
+            nombre: 'ventas-form',
+            uri: '/ventas/form',
+            nombre_uri: 'ventas-form',
+            mostrar: false,
+            icono: null,
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+        ],
+        {
+          returning: ['id'],
+          transaction: TRANSACTION,
+        },
+      );
+
+      const ALL_RUTAS = RUTAS.concat(RUTAS_VENTAS, RUTA_DASHBOARD);
+      const ALL_ROLES = ROLES.concat(ROLES_RUTAS_ADMIN, ROLES_VENTAS, ROLES_DASHBOARD);
+      const ALL_RUTAS_ROLES = ROLES_RUTAS_ADMIN.concat(ROLES_VENTAS, ROLES_DASHBOARD);
+
+      const ROLES_EMPLEADO = ROLES_DASHBOARD.concat(ROLES_VENTAS);
+
       // ASIGNAR ROLES AL PERFIL ADMIN
       await queryInterface.bulkInsert(
         'mnt_perfil_rol',
-        ROLES.concat(ROLES_RUTAS_ADMIN).map((role) => ({
+        ALL_ROLES.map((role) => ({
           id_perfil: PROFILE.id,
           id_rol: role.id,
         })),
@@ -440,9 +507,20 @@ module.exports = {
       );
 
       await queryInterface.bulkInsert(
+        'mnt_perfil_rol',
+        ROLES_EMPLEADO.map((role) => ({
+          id_perfil: EMPLEADO.id,
+          id_rol: role.id,
+        })),
+        {
+          transaction: TRANSACTION,
+        },
+      );
+
+      await queryInterface.bulkInsert(
         'mnt_ruta_rol',
-        ROLES_RUTAS_ADMIN.map((role, index) => ({
-          id_ruta: RUTAS[index].id,
+        ALL_RUTAS_ROLES.map((role, index) => ({
+          id_ruta: ALL_RUTAS[index].id,
           id_rol: role.id,
         })),
         {

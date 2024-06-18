@@ -70,11 +70,6 @@ export default class ApiController {
 
     if (!usuario) throw new NoAuthException('Credenciales no validas');
 
-    const frontAdmin = process.env.FRONT_ADMIN_HOST.split('||');
-    if (frontAdmin.includes(req.headers.origin)) {
-      if (!(await Security.isGranted(usuario.id, 'ROLE_USER_ADMIN'))) throw new NoAuthException();
-    }
-
     const validPassword = bcrypt.compareSync(password, usuario.password);
     if (!validPassword) throw new NoAuthException('Credenciales no validas');
 
