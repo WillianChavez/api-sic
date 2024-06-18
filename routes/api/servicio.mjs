@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/', Call(ServicioController.index));
 router.post('/', Call(ServicioController.create));
-router.get('/:id', Call(ServicioController.show));
+router.get('/:id', Call(ServicioController.getById));
 router.put('/:id', Call(ServicioController.update));
 router.delete('/:id', Call(ServicioController.destroy));
 

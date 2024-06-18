@@ -156,16 +156,9 @@ module.exports = {
 
           // roles para ver, crear y editar los servicios
           { name: 'ROLE_ADMIN_SERVICE_LIST', id_tipo_rol: admin.id },
-          { name: 'ROLE_ADMIN_SERVICE_CREATE', id_tipo_rol: admin.id },
-          { name: 'ROLE_ADMIN_SERVICE_UPDATE', id_tipo_rol: admin.id },
+          { name: 'ROLE_ADMIN_SERVICE_FORM', id_tipo_rol: admin.id },
 
-          // roles para ver, crear y editar las compras
-          { name: 'ROLE_ADMIN_PURCHASE_LIST', id_tipo_rol: admin.id },
-          { name: 'ROLE_ADMIN_PURCHASE_CREATE', id_tipo_rol: admin.id },
-          { name: 'ROLE_ADMIN_PURCHASE_UPDATE', id_tipo_rol: admin.id },
-
-          // roles para ver las cuentas
-          { name: 'ROLE_ADMIN_ACCOUNT_LIST', id_tipo_rol: admin.id },
+          { name: 'ROLE_ADMIN_SERVICE_TYPE_LIST', id_tipo_rol: admin.id },
 
           // roles para ver los reportes
           { name: 'ROLE_ADMIN_REPORT_LIST', id_tipo_rol: admin.id },
@@ -342,63 +335,22 @@ module.exports = {
             admin: true,
           },
           {
-            nombre: 'servicios',
-            uri: '/servicios/crear',
-            nombre_uri: 'servicios-crear',
+            nombre: 'servicios-form',
+            uri: '/servicios/form',
+            nombre_uri: 'servicios-form',
             mostrar: false,
-            icono: 'mdi-cog',
-            orden: null,
-            publico: false,
-            admin: true,
-          },
-          {
-            nombre: 'servicios',
-            uri: '/servicios/editar/:id',
-            nombre_uri: 'servicios-editar',
-            mostrar: false,
-            icono: 'mdi-cog',
-            orden: null,
-            publico: false,
-            admin: true,
-          },
-          // rutas para ver, crear y editar las compras
-          {
-            nombre: 'compras',
-            uri: '/compras',
-            nombre_uri: 'compras',
-            mostrar: true,
-            icono: 'mdi-cart',
-            orden: null,
-            publico: false,
-            admin: true,
-          },
-          {
-            nombre: 'compras',
-            uri: '/compras/crear',
-            nombre_uri: 'compras-crear',
-            mostrar: false,
-            icono: 'mdi-cart',
-            orden: null,
-            publico: false,
-            admin: true,
-          },
-          {
-            nombre: 'compras',
-            uri: '/compras/editar/:id',
-            nombre_uri: 'compras-editar',
-            mostrar: false,
-            icono: 'mdi-cart',
+            icono: null,
             orden: null,
             publico: false,
             admin: true,
           },
           // rutas para ver las cuentas
           {
-            nombre: 'cuentas',
-            uri: '/cuentas',
-            nombre_uri: 'cuentas',
+            nombre: 'Tipo de Servicios',
+            uri: '/tipo-servicios',
+            nombre_uri: 'tipo-servicios',
             mostrar: true,
-            icono: 'mdi-cash',
+            icono: 'mdi-cog',
             orden: null,
             publico: false,
             admin: true,
@@ -541,30 +493,32 @@ module.exports = {
 
       await queryInterface.bulkInsert('ctl_tipo_servicio', [
         {
-          nombre: 'Servicio funerario',
+          nombre: 'Atención al cliente',
         },
         {
-          nombre: 'Servicio de cremación',
+          nombre: 'Consultoría',
         },
         {
-          nombre: 'Servicio de velación',
+          nombre: 'Alquiler',
         },
         {
-          nombre: 'Servicio de inhumación',
+          nombre: 'Mantenimiento',
         },
         {
-          nombre: 'Servicio de exhumación',
+          nombre: 'Traslado',
         },
         {
-          nombre: 'Servicio de traslado',
+          nombre: 'Servicios complementarios',
         },
         {
-          nombre: 'Servicio de embalsamado',
+          nombre: 'Funerarios inmediatos',
+        },
+        {
+          nombre: 'Post-funerarios',
         },
       ], {
         transaction: TRANSACTION,
       });
-
       await TRANSACTION.commit();
     } catch (e) {
       console.log(e);
