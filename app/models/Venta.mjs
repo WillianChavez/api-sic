@@ -1,6 +1,6 @@
 import psql from 'sequelize';
 import DB from '../nucleo/DB.mjs';
-import { Cliente, Servicio } from './index.mjs';
+import { Cliente } from './index.mjs';
 import ServicioVenta from './ServicioVenta.mjs';
 
 class Venta extends psql.Model {
@@ -9,10 +9,6 @@ class Venta extends psql.Model {
       foreignKey: 'id_cliente',
     });
     this.hasMany(ServicioVenta, {
-      foreignKey: 'id_venta',
-    });
-    this.belongsToMany(Servicio, {
-      through: ServicioVenta,
       foreignKey: 'id_venta',
     });
   }

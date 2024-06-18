@@ -10,11 +10,11 @@ import UsuarioRol from './UsuarioRol.mjs';
 import MetodoAutenticacion from './MetodoAutenticacion.mjs';
 import Servicio from './Servicio.mjs';
 import DetalleVenta from './DetalleVenta.mjs';
-import Persona from './Persona.mjs';
 import TipoServicio from './TipoServicio.mjs';
 import Cliente from './Cliente.mjs';
 import Venta from './Venta.mjs';
 import TipoPago from './TipoPago.mjs';
+import ServicioVenta from './ServicioVenta.mjs';
 
 TipoServicio.associate();
 Usuario.associate();
@@ -27,8 +27,8 @@ Servicio.associate();
 Venta.associate();
 Cliente.associate();
 DetalleVenta.associate();
-Persona.associate();
 TipoPago.associate();
+ServicioVenta.associate();
 
 export {
   RefreshToken,
@@ -43,9 +43,9 @@ export {
   MetodoAutenticacion,
   Servicio,
   DetalleVenta,
-  Persona,
   TipoServicio,
   Venta,
   Cliente,
   TipoPago,
+  ServicioVenta,
 };
