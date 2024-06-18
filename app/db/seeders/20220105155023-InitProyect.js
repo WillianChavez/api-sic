@@ -12,10 +12,10 @@ module.exports = {
         'mnt_perfil',
         [
           {
-            nombre: 'SUPER_ADMIN',
+            nombre: 'ADMINISTRADOR',
           },
           {
-            nombre: 'USUARIO',
+            nombre: 'EMPLEADO',
           },
         ],
         {
@@ -515,27 +515,22 @@ module.exports = {
       );
 
       await queryInterface.bulkInsert(
-        'ctl_tipo_cuenta',
+        'ctl_tipo_pago',
         [
           {
-            nombre: 'ACTIVO',
-            codigo: '1',
+            nombre: 'Efectivo',
           },
           {
-            nombre: 'PASIVO',
-            codigo: '2',
+            nombre: 'Tarjeta de crédito',
           },
           {
-            nombre: 'PATRIMONIO',
-            codigo: '3',
+            nombre: 'Tarjeta de débito',
           },
           {
-            nombre: 'CUENTAS DE RESULTADO DEUDORAS',
-            codigo: '4',
+            nombre: 'Transferencia bancaria',
           },
           {
-            nombre: 'CUENTAS DE RESULTADO ACREEDORAS',
-            codigo: '5',
+            nombre: 'Cheque',
           },
         ],
         {
@@ -544,299 +539,31 @@ module.exports = {
         },
       );
 
-      await queryInterface.bulkInsert(
-        'mnt_cuenta',
-        [
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Caja',
-            codigo: '110101',
-            requerido: true,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Bancos',
-            codigo: '110102',
-            requerido: true,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Cuentas por cobrar',
-            codigo: '110201',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Documentos por cobrar',
-            codigo: '110202',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Otras cuentas por cobrar',
-            codigo: '110203',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Crédito fiscal IVA',
-            codigo: '1103',
-            requerido: true,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Pagos adicionales',
-            codigo: '1104',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Suministros de oficina',
-            codigo: '110401',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Alquiler de local',
-            codigo: '110402',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Publicidad',
-            codigo: '110403',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Deudores diversos',
-            codigo: '1105',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Mobiliario y equipo',
-            codigo: '120101',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Equipo de computo',
-            codigo: '120102',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Depreciación acumulada propiedad y equipos',
-            codigo: '1202',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 1,
-            nombre: 'Licencias',
-            codigo: '1203',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 2,
-            nombre: 'Préstamos bancarios',
-            codigo: '2101',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 2,
-            nombre: 'Documentos por pagar',
-            codigo: '2102',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 2,
-            nombre: 'Cuentas por pagar',
-            codigo: '2103',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 2,
-            nombre: 'Debito fiscal IVA',
-            codigo: '2104',
-            requerido: true,
-          },
-          {
-            id_tipo_cuenta: 2,
-            nombre: 'Acreedores diversos',
-            codigo: '2105',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 2,
-            nombre: 'Préstamos bancarios a largo plazo',
-            codigo: '2201',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 2,
-            nombre: 'Documentos por pagar a largo plazo',
-            codigo: '2202',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 3,
-            nombre: 'Capital',
-            codigo: '3101',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 3,
-            nombre: 'Utilidad del ejercicio',
-            codigo: '3102',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 4,
-            nombre: 'Costos por servicios',
-            codigo: '4101',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 4,
-            nombre: 'Costos de adquisición de licencias',
-            codigo: '4102',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 4,
-            nombre: 'Salarios',
-            codigo: '4103',
-            requerido: true,
-          },
-          {
-            id_tipo_cuenta: 4,
-            nombre: 'Vacaciones',
-            codigo: '4104',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 4,
-            nombre: 'Aguinaldo',
-            codigo: '4105',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 4,
-            nombre: 'Cuota patronal ISSS',
-            codigo: '4106',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 4,
-            nombre: 'Cuota patronal AFP',
-            codigo: '4107',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 4,
-            nombre: 'INSAFORP',
-            codigo: '4108',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 4,
-            nombre: 'Mantenimiento de equipos',
-            codigo: '4109',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 4,
-            nombre: 'Gastos por servicios vendidos',
-            codigo: '4110',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 4,
-            nombre: 'Gastos de administración',
-            codigo: '4111',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 4,
-            nombre: 'Gastos financieros',
-            codigo: '4112',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 5,
-            nombre: 'Servicios de consultoría',
-            codigo: '510101',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 5,
-            nombre: 'Servicios de desarrollo',
-            codigo: '510102',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 5,
-            nombre: 'Descuentos por servicios',
-            codigo: '510201',
-            requerido: false,
-          },
-          {
-            id_tipo_cuenta: 5,
-            nombre: 'Reclamos por servicios',
-            codigo: '510202',
-            requerido: false,
-          },
-        ],
+      await queryInterface.bulkInsert('ctl_tipo_servicio', [
         {
-          returning: ['id'],
-          transaction: TRANSACTION,
+          nombre: 'Servicio funerario',
         },
-      );
-
-      await queryInterface.bulkInsert(
-        'ctl_tipo_contribuyente',
-        [
-          {
-            id: 1,
-            nombre: 'Gran contribuyente',
-          },
-          {
-            id: 2,
-            nombre: 'Otros contribuyentes',
-          },
-          {
-            id: 3,
-            nombre: 'Ninguno',
-          },
-        ],
         {
-          returning: ['id'],
-          transaction: TRANSACTION,
+          nombre: 'Servicio de cremación',
         },
-      );
-
-      await queryInterface.bulkInsert(
-        'ctl_tipo_emision_documento',
-        [
-          {
-            id: 1,
-            nombre: 'Factura de exportación',
-          },
-          {
-            id: 2,
-            nombre: 'Comprobante crédito fiscal',
-          },
-          {
-            id: 3,
-            nombre: 'Factura',
-          },
-        ],
         {
-          returning: ['id'],
-          transaction: TRANSACTION,
+          nombre: 'Servicio de velación',
         },
-      );
+        {
+          nombre: 'Servicio de inhumación',
+        },
+        {
+          nombre: 'Servicio de exhumación',
+        },
+        {
+          nombre: 'Servicio de traslado',
+        },
+        {
+          nombre: 'Servicio de embalsamado',
+        },
+      ], {
+        transaction: TRANSACTION,
+      });
 
       await TRANSACTION.commit();
     } catch (e) {

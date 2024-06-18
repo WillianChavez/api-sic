@@ -21,9 +21,9 @@ class Venta extends psql.Model {
 Venta.init(
   {
     numero_factura: {
-      type: psql.Sequelize.STRING(20),
+      type: psql.Sequelize.UUID,
       primaryKey: true,
-      defaultValue: psql.Sequelize.fn('uuid_generate_v4'),
+      defaultValue: psql.Sequelize.UUIDV4,
     },
     id_cliente: {
       type: psql.Sequelize.INTEGER,

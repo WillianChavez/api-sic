@@ -25,7 +25,7 @@ DetalleVenta.init(
       allowNull: false,
     },
     id_venta: {
-      type: psql.Sequelize.VARCHAR(20),
+      type: psql.Sequelize.STRING(20),
       allowNull: false,
     },
     total: {

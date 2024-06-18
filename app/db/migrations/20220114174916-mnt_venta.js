@@ -4,9 +4,9 @@ module.exports = {
   up: async (queryInterface) => {
     await queryInterface.createTable('mnt_venta', {
       numero_factura: {
-        type: psql.Sequelize.STRING(20),
+        type: psql.Sequelize.UUID,
         primaryKey: true,
-        defaultValue: psql.Sequelize.fn('uuid_generate_v4'),
+        defaultValue: psql.Sequelize.UUIDV4,
       },
       id_cliente: {
         type: psql.Sequelize.INTEGER,
