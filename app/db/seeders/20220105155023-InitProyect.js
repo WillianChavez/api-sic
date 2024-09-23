@@ -172,6 +172,9 @@ module.exports = {
           { name: 'ROLE_ADMIN_REPORT_LEDGER_LIST', id_tipo_rol: admin.id },
           { name: 'ROLE_ADMIN_REPORT_LEDGER_ST', id_tipo_rol: admin.id },
 
+          // clientes
+          { name: 'ROLE_ADMIN_CLIENT_LIST', id_tipo_rol: admin.id },
+          { name: 'ROLE_ADMIN_CLIENT_FORM', id_tipo_rol: admin.id },
         ],
         {
           returning: ['id'],
@@ -379,7 +382,7 @@ module.exports = {
             nombre: 'reportes',
             uri: '/reportes',
             nombre_uri: 'reportes',
-            mostrar: true,
+            mostrar: false,
             icono: 'mdi-file-chart',
             orden: null,
             publico: false,
@@ -435,6 +438,28 @@ module.exports = {
             nombre_uri: 'reportes-libro-mayor',
             mostrar: false,
             icono: 'mdi-file-chart',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+
+          // clientes
+          {
+            nombre: 'clientes',
+            uri: '/clientes',
+            nombre_uri: 'clientes',
+            mostrar: true,
+            icono: 'mdi-account-group',
+            orden: null,
+            publico: false,
+            admin: true,
+          },
+          {
+            nombre: 'clientes-form',
+            uri: '/clientes/form',
+            nombre_uri: 'clientes-form',
+            mostrar: false,
+            icono: null,
             orden: null,
             publico: false,
             admin: true,
