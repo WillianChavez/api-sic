@@ -46,10 +46,6 @@ A continuación se listan los pasos para la instalación y configuración de la 
 
 Clonar el proyecto desde los repositorios oficiales ejecutando el siguiente comando:
 
-```bash
-git clone http://codigo.salud.gob.sv/plantillas/JavasScript/api-node-express.git
-```
-
 #### 1.2 Instalación de modules
 
 Instalar los modules en el directorio raíz del proyecto ejecutando el siguiente comando:
@@ -87,6 +83,13 @@ npm run migrate
 Ejecutar los seeders para poblar la base de datos para configurar roles, perfiles y rutas con el siguiente comando en la terminal:
 ```bash
 npm run seed
+
+```
+
+
+Crear la documentación
+```bash
+npm run swagger
 ```
 Luego de realizar los pasos anteriores iniciar el proyecto a través del comando:
 ```bash
