@@ -20,4 +20,14 @@ export default class ClienteController {
     const cliente = await Cliente.findByPk(req.params.id);
     res.json(cliente);
   }
+
+  static async update(req, res) {
+    const { nombre, dui, email } = req.body;
+    const cliente = await Cliente.findByPk(req.params.id);
+    cliente.nombre = nombre;
+    cliente.dui = dui;
+    cliente.email = email;
+    await cliente.save();
+    res.json(cliente);
+  }
 }
