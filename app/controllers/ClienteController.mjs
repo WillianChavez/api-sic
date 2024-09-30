@@ -30,4 +30,10 @@ export default class ClienteController {
     await cliente.save();
     res.json(cliente);
   }
+
+  static async delete(req, res) {
+    const {id} = req.params;
+    const cliente = await Cliente.findByPk(id);
+    await cliente.destroy();
+  }
 }
