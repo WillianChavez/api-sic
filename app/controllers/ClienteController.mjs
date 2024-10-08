@@ -65,8 +65,9 @@ export default class ClienteController {
   }
 
   static async delete(req, res) {
-    const {id} = req.params;
+    const { id } = req.params;
     const cliente = await Cliente.findByPk(id);
     await cliente.destroy();
+    return res.json({ message: 'cliente eliminado' });
   }
 }
