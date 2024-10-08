@@ -10,6 +10,27 @@ export default class ClienteController {
 
   static async create(req, res) {
     const { nombre, dui, email } = req.body;
+
+    const emailExist = await Cliente.findOne({
+      where: {
+        email,
+      },
+    });
+
+    if (emailExist) {
+      throw new BadRequestException('Email ya existe');
+    }
+
+    const duiExist = await Cliente.findOne({
+      where: {
+        dui,
+      },
+    });
+
+    if (duiExist) {
+      throw new BadRequestException('DUI ya existe');
+    }
+
     const cliente = await Cliente.create({
       nombre,
       dui,
