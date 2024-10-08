@@ -8,5 +8,6 @@ router.get('/', Call(ClienteController.list));
 router.get('/:id', Call(ClienteController.show));
 router.post('/', Call(ClienteController.create));
 router.put('/:id', Call(ClienteController.update));
+router.delete('/:id', Call(ClienteController.delete));
 
 export default router;
