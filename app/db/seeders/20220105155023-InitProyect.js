@@ -53,6 +53,14 @@ module.exports = {
             verified: true,
             nombre: process.env.NOMBRE_INICIAL,
           },
+          {
+            email: 'empleado@ues.edu.sv',
+            password: passwordCrypt,
+            is_suspended: false,
+            two_factor_status: process.env.TWO_FACTOR_AUTH === 'true',
+            verified: true,
+            nombre: 'Empleado',
+          },
         ],
         {
           returning: ['id', 'email'],
