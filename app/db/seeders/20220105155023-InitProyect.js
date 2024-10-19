@@ -570,6 +570,10 @@ module.exports = {
             id_perfil: PROFILE.id,
             id_usuario: USUARIO.id,
           },
+          {
+            id_perfil: EMPLEADO.id,
+            id_usuario: USUARIO.id,
+          },
         ],
         {
           returning: ['id'],
