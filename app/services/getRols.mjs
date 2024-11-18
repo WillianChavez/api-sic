@@ -4,6 +4,7 @@ export default class getRols {
   static async roles(userId, property = 'name') {
     const user = await Usuario.findOne({ include: [Rol, { model: Perfil, include: [Rol] }], where: { id: userId } });
     const rolePerfils = user.Perfils.reduce((acumulador, value) => [...value.Rols], []);
+    console.log(rolePerfils);
     /**
      * Set para hacer arreglo unico sin valores repetidos
      * */

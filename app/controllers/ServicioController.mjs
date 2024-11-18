@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import {
   Servicio,
   TipoServicio,
@@ -8,10 +9,20 @@ import VerifyModel from '../utils/VerifyModel.mjs';
 
 export default class ServicioController {
   static async index(req, res) {
+    const filtro = {};
+    const { nombre } = req.query;
+
+    if (nombre) {
+      filtro.nombre = {
+        [Op.iLike]: `%${nombre}%`,
+      };
+    }
+
     const servicios = await Servicio.findAll({
       include: [{
         model: TipoServicio,
       }],
+      where: filtro,
     });
     return res.status(HttpCode.HTTP_OK).json(servicios);
   }

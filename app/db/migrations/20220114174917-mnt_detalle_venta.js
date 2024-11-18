@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false,
       },
       id_venta: {
-        type: psql.Sequelize.STRING(20),
+        type: psql.Sequelize.UUID,
         allowNull: false,
       },
       total: {
@@ -25,6 +25,15 @@ module.exports = {
         allowNull: false,
       },
 
+      cambio: {
+        type: psql.Sequelize.DECIMAL,
+        allowNull: false,
+      },
+
+      cantidad_pagada: {
+        type: psql.Sequelize.DECIMAL,
+        allowNull: false,
+      },
     });
   },
 

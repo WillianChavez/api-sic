@@ -42,7 +42,7 @@ module.exports = {
       );
       const passwordCrypt = bcrypt.hashSync(process.env.PASSWORD_INICIAL, salt);
 
-      const [USUARIO] = await queryInterface.bulkInsert(
+      const [USUARIO, USUARIO_DOS] = await queryInterface.bulkInsert(
         'mnt_usuario',
         [
           {
@@ -192,10 +192,7 @@ module.exports = {
 
       const ROLES_DASHBOARD = await queryInterface.bulkInsert(
         'mnt_rol',
-        [
-          { name: 'ROLE_ADMIN_DASHBOARD_VIEW', id_tipo_rol: admin.id },
-
-        ],
+        [{ name: 'ROLE_ADMIN_DASHBOARD_VIEW', id_tipo_rol: admin.id }],
         {
           returning: ['id'],
           transaction: TRANSACTION,
@@ -390,7 +387,7 @@ module.exports = {
             nombre: 'reportes',
             uri: '/reportes',
             nombre_uri: 'reportes',
-            mostrar: false,
+            mostrar: true,
             icono: 'mdi-file-chart',
             orden: null,
             publico: false,
@@ -572,7 +569,7 @@ module.exports = {
           },
           {
             id_perfil: EMPLEADO.id,
-            id_usuario: USUARIO.id,
+            id_usuario: USUARIO_DOS.id,
           },
         ],
         {
@@ -606,34 +603,112 @@ module.exports = {
         },
       );
 
-      await queryInterface.bulkInsert('ctl_tipo_servicio', [
+      await queryInterface.bulkInsert(
+        'ctl_tipo_servicio',
+        [
+          {
+            nombre: 'Atención al cliente',
+          },
+          {
+            nombre: 'Consultoría',
+          },
+          {
+            nombre: 'Alquiler',
+          },
+          {
+            nombre: 'Mantenimiento',
+          },
+          {
+            nombre: 'Traslado',
+          },
+          {
+            nombre: 'Servicios complementarios',
+          },
+          {
+            nombre: 'Funerarios inmediatos',
+          },
+          {
+            nombre: 'Post-funerarios',
+          },
+        ],
         {
-          nombre: 'Atención al cliente',
+          transaction: TRANSACTION,
         },
+      );
+
+      await queryInterface.bulkInsert(
+        'mnt_servicio',
+        [
+          {
+            nombre: 'Atención al cliente',
+            descripcion: 'Servicio de atención al cliente',
+            precio_base: 20,
+            costo: 15,
+            id_tipo_servicio: 1,
+            fecha: new Date(),
+          },
+          {
+            nombre: 'Consultoría',
+            descripcion: 'Servicio de consultoría',
+            precio_base: 30,
+            costo: 25,
+            id_tipo_servicio: 2,
+            fecha: new Date(),
+          },
+          {
+            nombre: 'Alquiler',
+            descripcion: 'Servicio de alquiler',
+            precio_base: 40,
+            costo: 35,
+            id_tipo_servicio: 3,
+            fecha: new Date(),
+          },
+          {
+            nombre: 'Mantenimiento',
+            descripcion: 'Servicio de mantenimiento',
+            precio_base: 50,
+            costo: 45,
+            id_tipo_servicio: 4,
+            fecha: new Date(),
+          },
+          {
+            nombre: 'Traslado',
+            descripcion: 'Servicio de traslado',
+            precio_base: 60,
+            costo: 55,
+            id_tipo_servicio: 5,
+            fecha: new Date(),
+          },
+          {
+            nombre: 'Servicios complementarios',
+            descripcion: 'Servicio de servicios complementarios',
+            precio_base: 70,
+            costo: 65,
+            id_tipo_servicio: 6,
+            fecha: new Date(),
+          },
+          {
+            nombre: 'Funerarios inmediatos',
+            descripcion: 'Servicio de funerarios inmediatos',
+            precio_base: 80,
+            costo: 75,
+            id_tipo_servicio: 7,
+            fecha: new Date(),
+          },
+          {
+            nombre: 'Post-funerarios',
+            descripcion: 'Servicio de post-funerarios',
+            precio_base: 90,
+            costo: 85,
+            id_tipo_servicio: 8,
+            fecha: new Date(),
+          },
+        ],
         {
-          nombre: 'Consultoría',
+          transaction: TRANSACTION,
         },
-        {
-          nombre: 'Alquiler',
-        },
-        {
-          nombre: 'Mantenimiento',
-        },
-        {
-          nombre: 'Traslado',
-        },
-        {
-          nombre: 'Servicios complementarios',
-        },
-        {
-          nombre: 'Funerarios inmediatos',
-        },
-        {
-          nombre: 'Post-funerarios',
-        },
-      ], {
-        transaction: TRANSACTION,
-      });
+      );
+
       await TRANSACTION.commit();
     } catch (e) {
       console.log(e);
