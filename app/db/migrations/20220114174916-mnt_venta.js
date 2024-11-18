@@ -10,9 +10,13 @@ module.exports = {
       },
       id_cliente: {
         type: psql.Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
-
+      fecha: {
+        type: psql.Sequelize.DATE,
+        allowNull: false,
+        defaultValue: psql.Sequelize.NOW,
+      },
     });
   },
 

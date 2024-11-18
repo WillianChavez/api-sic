@@ -21,7 +21,7 @@ ServicioVenta.init(
       autoIncrement: true,
     },
     id_venta: {
-      type: psql.Sequelize.STRING(20),
+      type: psql.Sequelize.UUID,
       allowNull: false,
     },
     id_servicio: {

@@ -25,7 +25,7 @@ DetalleVenta.init(
       allowNull: false,
     },
     id_venta: {
-      type: psql.Sequelize.STRING(20),
+      type: psql.Sequelize.UUID,
       allowNull: false,
     },
     total: {
@@ -34,6 +34,14 @@ DetalleVenta.init(
     },
     cantidad_servicios: {
       type: psql.Sequelize.INTEGER,
+      allowNull: false,
+    },
+    cambio: {
+      type: psql.Sequelize.DECIMAL,
+      allowNull: false,
+    },
+    cantidad_pagada: {
+      type: psql.Sequelize.DECIMAL,
       allowNull: false,
     },
   },
