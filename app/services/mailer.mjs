@@ -1,13 +1,18 @@
 import nodemailer from 'nodemailer';
 import mjml2html from 'mjml';
+import path from 'path';
 
 const transporter = nodemailer.createTransport({
   host: process.env.MAIL_HOST,
-  port: process.env.MAIL_PORT,
+  service: process.env.MAIL_SERVICE,
+  port: process.env.MAIL_PORT * 1,
   secure: process.env.MAIL_SECURE === 'true',
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
+  },
+  tls: {
+    rejectUnauthorized: false,
   },
 });
 export default class Mailer {
@@ -15,6 +20,10 @@ export default class Mailer {
     const {
       email, header, subject, message, body = [], sections = [],
     } = params;
+
+    const dirname = path.dirname(new URL(import.meta.url).pathname);
+    const bannerPath = path.join(dirname, '../../public/banner.png');
+
     const { html } = mjml2html({
       tagName: 'mjml',
       attributes: {},
@@ -31,14 +40,14 @@ export default class Mailer {
                   tagName: 'mj-column',
                   attributes: {},
                   children: [
+                    ...header,
                     {
                       tagName: 'mj-image',
                       attributes: {
-                        src: 'https://next.salud.gob.sv/index.php/s/AHEMQ38JR93fnXQ/download',
-                        width: '350px',
+                        width: '1000px',
+                        src: 'cid:banner',
                       },
                     },
-                    ...header,
                     {
                       tagName: 'mj-spacer',
                       attributes: {
@@ -79,6 +88,13 @@ export default class Mailer {
       to: email,
       subject,
       html,
+      attachments: [
+        {
+          filename: 'banner.png',
+          path: bannerPath,
+          cid: 'banner',
+        },
+      ],
     };
 
     const send = await transporter.sendMail(mailConfig);

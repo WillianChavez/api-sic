@@ -6,6 +6,7 @@ import ServicioVenta from '../models/ServicioVenta.mjs';
 import DB from '../nucleo/DB.mjs';
 import Servicio from '../models/Servicio.mjs';
 import Cliente from '../models/Cliente.mjs';
+import Mailer from '../services/mailer.mjs';
 
 const meses = [
   'Enero',
@@ -79,11 +80,86 @@ export default class VentaController {
         );
       }
 
+      const findServicios = await Servicio.findAll({
+        where: {
+          id: {
+            [Op.in]: servicios.map((servicio) => servicio.id_servicio),
+          },
+        },
+      });
+
+      if (idCliente) {
+        const cliente = await Cliente.findByPk(idCliente);
+        const recipient = cliente.email;
+
+        const header = `
+    <h2 style="text-align: center; color: #4CAF50;">Factura de Compra</h2>
+    <p style="text-align: center;">Gracias por su preferencia, ${cliente.nombre}.</p>
+  `;
+
+        const serviciosTable = `
+    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">#</th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Servicio</th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: right; background-color: #f2f2f2;">Cantidad</th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: right; background-color: #f2f2f2;">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${servicios
+    .map(
+      (servicio, index) => `
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${index + 1}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${findServicios.find((s) => s.id === servicio.id_servicio)?.nombre}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">${servicio.cantidad}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">$${servicio.subtotal.toFixed(2)}</td>
+          </tr>
+        `,
+    )
+    .join('')}
+      </tbody>
+    </table>
+  `;
+
+        const totalSection = `
+    <p style="text-align: right; font-weight: bold; margin: 20px 0;">
+      Total: <span style="color: #4CAF50;">$${detalle.total.toFixed(2)}</span>
+    </p>
+  `;
+
+        const footer = `
+    <p style="text-align: center; font-size: 12px; color: #888;">
+      Si tiene alguna pregunta sobre esta factura, no dude en contactarnos.
+    </p>
+  `;
+
+        const htmlMessage = `
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 5px;">
+      ${header}
+      ${serviciosTable}
+      ${totalSection}
+      ${footer}
+    </div>
+  `;
+
+        await Mailer.sendMail({
+          email: recipient,
+          subject: 'Gracias por su compra',
+          message: htmlMessage,
+          header: [],
+          body: [],
+        });
+      }
+
       await t.commit();
 
       return res.status(HttpCode.HTTP_OK).json(newVenta);
     } catch (error) {
       t.rollback();
+      console.error(error);
       throw error;
     }
   }
